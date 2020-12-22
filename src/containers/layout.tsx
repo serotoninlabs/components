@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { px2vw } from "./utils/px2vw";
+import { px2vw } from "../utils/px2vw";
 
 export const Section = styled.section`
   margin: 10px 0;

@@ -22,6 +22,10 @@ const PartyButton = styled.button`
       transition: opacity 0.25s 0.25s ease-in;
     }
   }
+  :focus {
+    outline: none;
+    box-shadow: none;
+  }
 `;
 
 export const PartyWizard = ({ onClick }: any) => {

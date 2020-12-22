@@ -1,7 +1,5 @@
 import { ThemeOverride } from "./types";
-import defaultsDeep from "lodash/defaultsDeep";
-import { defaultTheme } from "./default";
-import { DefaultTheme } from "styled-components";
+import { extendTheme } from "./extendTheme";
 
 const darkPartial: ThemeOverride = {
   fonts: {
@@ -28,4 +26,4 @@ const darkPartial: ThemeOverride = {
   },
 };
 
-export const darkTheme: DefaultTheme = defaultsDeep(darkPartial, defaultTheme);
+export const darkTheme = extendTheme(darkPartial);

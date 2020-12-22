@@ -1,25 +1,31 @@
 import React from "react";
 import styled from "styled-components";
-import { SectionHeading, Text } from "../text";
-import { Container, ContainerSize } from "./Container";
+import { SectionHeading, Text } from "../text/text";
+import { ContainerSize } from "./Container";
 
-export const StyledCard = styled(Container)`
+export interface CardProps {
+  href?: string;
+  size?: ContainerSize;
+  className?: string;
+}
+
+export const BaseCard: React.FunctionComponent<CardProps> = (props) => {
+  const { href, ...rest } = props;
+
+  return (
+    <div className={props.className} {...rest}>
+      {props.children}
+    </div>
+  );
+};
+
+export const Card = styled(BaseCard)`
   border-radius: ${(props) => props.theme.borderRadius};
   background-color: ${(props) => props.theme.colors.primary.main};
   color: ${(props) => props.theme.colors.primary.text};
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
   border: ${(props) => props.theme.colors.primary.border};
 `;
-
-export interface CardProps {
-  href?: string;
-  size?: ContainerSize;
-}
-export const Card: React.FunctionComponent<CardProps> = (props) => {
-  const { href, ...rest } = props;
-
-  return <StyledCard {...rest}>{props.children}</StyledCard>;
-};
 
 export const CardHeading = styled(SectionHeading)``;
 export const CardContent = styled(Text)``;

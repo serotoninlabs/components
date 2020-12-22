@@ -1,6 +1,6 @@
 import { DefaultTheme } from "styled-components";
 
-interface IPalette {
+export interface IPalette {
   main: string;
   text: string;
   gradient: string[];

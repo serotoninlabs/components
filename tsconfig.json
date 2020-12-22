@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "module": "ESNext",
     "declaration": true,
     "declarationDir": "dist/types",
     "esModuleInterop": true,
@@ -8,7 +9,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "ESNext"
+    "target": "es5"
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "src/**/*.stories.tsx"]

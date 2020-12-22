@@ -4,25 +4,44 @@ import {
   DefaultTheme,
   ThemeProvider as StyledThemeProvider,
 } from "styled-components";
-import { defaultTheme } from "./default";
-import { themes } from "./themes";
+import { themes as internalThemes, Themes } from "./themes";
 
 export interface ThemeContextProps {
-  setTheme: (name: keyof typeof themes) => void;
+  setTheme: (name: string) => void;
   currentTheme: DefaultTheme;
-  themeName: keyof typeof themes;
+  themeName: string;
 }
 // @ts-ignore
 export const ThemeProviderContext = createContext<ThemeContextProps>(undefined);
 
-export const ThemeProvider: React.FC = ({ children }) => {
-  const [[name, theme], setTheme] = useState<
-    [keyof typeof themes, DefaultTheme]
-  >(["default", defaultTheme]);
+export interface ThemeProviderProps {
+  themes?: Themes;
+  startingTheme?: string;
+}
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({
+  children,
+  themes: externalThemes,
+  startingTheme,
+}) => {
+  const themes = useMemo(() => {
+    const rtn = externalThemes || {};
+    Object.keys(internalThemes).map((key) => {
+      if (!rtn[key]) {
+        rtn[key] = internalThemes[key];
+      }
+    });
+
+    return rtn;
+  }, [externalThemes]);
+
+  const [[name, theme], setTheme] = useState<[string, DefaultTheme]>([
+    startingTheme || "default",
+    themes[startingTheme || "default"],
+  ]);
 
   const val = useMemo(() => {
     return {
-      setTheme(nextThemeName: keyof typeof themes) {
+      setTheme(nextThemeName: string) {
         const nextTheme = themes[nextThemeName];
         console.log(
           "changing theme",
