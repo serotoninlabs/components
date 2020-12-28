@@ -26,9 +26,16 @@ export const SerotoninProvider: React.FC<SerotoninProviderProps> = ({
 
   const handler = useMemo(() => new TxHandler(), []);
 
+  async function analyticsAdjusted() {
+    return initializeAnalytics().then((analytics) => {
+      handler.setAnalytics(analytics);
+      return analytics;
+    });
+  }
+
   return (
     <ThemeProvider themes={themes}>
-      <AppAnalyticsProvider initialize={initializeAnalytics}>
+      <AppAnalyticsProvider initialize={analyticsAdjusted}>
         <EthereumProvider
           handler={handler}
           requiredChainId={requiredChainId}
