@@ -6,7 +6,7 @@ import { TxHandler } from "../ethereum/TxHandler";
 import { ThemeProvider, Themes } from "../themes";
 
 export interface SerotoninProviderProps {
-  appAnalytics?: AppAnalytics;
+  initializeAnalytics(): Promise<AppAnalytics>;
   themes?: Themes;
   requiredChainId: number;
   rpcUrl: string;
@@ -17,6 +17,7 @@ export const SerotoninProvider: React.FC<SerotoninProviderProps> = ({
   themes,
   requiredChainId,
   rpcUrl,
+  initializeAnalytics,
 }) => {
   //   const analytics = useSafeAnalytics();
   //   useEffect(() => {
@@ -27,7 +28,7 @@ export const SerotoninProvider: React.FC<SerotoninProviderProps> = ({
 
   return (
     <ThemeProvider themes={themes}>
-      <AppAnalyticsProvider>
+      <AppAnalyticsProvider initialize={initializeAnalytics}>
         <EthereumProvider
           handler={handler}
           requiredChainId={requiredChainId}

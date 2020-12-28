@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { SectionHeading, Text } from "../text/text";
-import { ContainerSize } from "./Container";
+import { Container, ContainerSize } from "./Container";
 
 export interface CardProps {
   href?: string;
@@ -19,7 +19,7 @@ export const BaseCard: React.FunctionComponent<CardProps> = (props) => {
   );
 };
 
-export const Card = styled(BaseCard)`
+export const Card = styled(Container)`
   border-radius: ${(props) => props.theme.borderRadius};
   background-color: ${(props) => props.theme.colors.primary.main};
   color: ${(props) => props.theme.colors.primary.text};
