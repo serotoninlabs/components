@@ -7,7 +7,12 @@ export type ButtonProps = {
   disabled?: boolean;
   href?: string;
   fireEvent?: string | { name: string; data: any };
-  onClick?(): void;
+  onClick?(
+    event: React.MouseEvent<
+      HTMLInputElement | HTMLButtonElement | HTMLAnchorElement,
+      MouseEvent
+    >
+  ): void;
 };
 
 export const Base: React.FC<ButtonProps> = (props) => {
@@ -20,8 +25,13 @@ export const Base: React.FC<ButtonProps> = (props) => {
     </button>
   );
 
-  function onClick() {
-    props.onClick && props.onClick();
+  function onClick(
+    event: React.MouseEvent<
+      HTMLInputElement | HTMLButtonElement | HTMLAnchorElement,
+      MouseEvent
+    >
+  ) {
+    props.onClick && props.onClick(event);
     if (typeof props.fireEvent === "string") {
       analytics.logEvent(props.fireEvent);
     } else if (props.fireEvent) {

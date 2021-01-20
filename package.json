@@ -1,16 +1,19 @@
 {
   "name": "@serotonin/components",
-  "version": "0.0.4",
+  "version": "0.0.11",
   "description": "",
   "main": "dist/node/index.js",
   "module": "dist/module/index.js",
   "types": "dist/module",
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/react-dom": "^17.0.0",
     "@types/uuid": "^8.3.0",
     "@web3-react/abstract-connector": "^6.0.7",
     "@web3-react/core": "^6.1.1",
@@ -39,10 +42,15 @@
     "@rollup/plugin-image": "^2.0.6",
     "@rollup/plugin-node-resolve": "^11.0.1",
     "@rollup/plugin-typescript": "^8.1.0",
+    "@storybook/addon-actions": "^6.1.14",
+    "@storybook/addon-essentials": "^6.1.14",
+    "@storybook/addon-links": "^6.1.14",
+    "@storybook/react": "^6.1.14",
     "@types/lodash": "^4.14.165",
     "@types/styled-components": "^5.1.5",
     "babel-loader": "^8.2.2",
     "prettier": "^2.2.1",
+    "react-dom": "^17.0.1",
     "rollup": "^2.35.1",
     "rollup-plugin-img": "^1.1.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",

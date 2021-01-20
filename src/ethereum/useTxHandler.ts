@@ -25,6 +25,8 @@ export function useTxHandler(id: string): TxHandlerOutput {
         updatedTx.toJS().status!;
       } else {
         setError(undefined);
+        setTx(undefined);
+        setReceipt(undefined);
       }
     });
 
