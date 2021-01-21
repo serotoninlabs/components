@@ -1,12 +1,12 @@
 {
   "name": "@serotonin/components",
-  "version": "0.0.11",
+  "version": "0.0.16",
   "description": "",
   "main": "dist/node/index.js",
   "module": "dist/module/index.js",
   "types": "dist/module",
   "scripts": {
-    "build": "rollup -c",
+    "build": "rm -rf dist && rollup -c",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -24,7 +24,6 @@
     "lodash": "^4.17.20",
     "react": "^17.0.1",
     "react-datepicker": "^3.3.0",
-    "react-hook-form": "^6.13.1",
     "react-icons": "^4.1.0",
     "styled-components": "^5.2.1",
     "tiny-invariant": "^1.1.0",

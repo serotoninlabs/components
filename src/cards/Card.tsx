@@ -25,6 +25,8 @@ export const Card = styled(Container)`
   color: ${(props) => props.theme.colors.primary.text};
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
   border: ${(props) => props.theme.colors.primary.border};
+  display: flex;
+  flex-direction: column;
 `;
 
 export const CardHeading = styled(SectionHeading)``;
@@ -48,6 +50,7 @@ export const CardHeader = styled.div`
 export const CardBody = styled.div`
   padding: 15px;
   font-size: 1rem;
+  flex-grow: 1;
 `;
 
 export const CardFooter = styled.div`

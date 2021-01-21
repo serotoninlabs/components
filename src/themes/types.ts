@@ -12,6 +12,7 @@ declare module "styled-components" {
     fonts: {
       serif: string;
       sansSerif: string;
+      mono: string;
     };
     backgroundColor: string;
     borderRadius: string;

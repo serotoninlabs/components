@@ -27,6 +27,9 @@ export const Meta: React.FC<MetaProps> = (props) => {
         )}:wght@200;400;700&family=${theme.fonts.serif.replace(
           " ",
           "+"
+        )}:wght@200;400;700&&family=${theme.fonts.mono.replace(
+          " ",
+          "+"
         )}:wght@200;400;700&display=swap`}
         rel="stylesheet"
       />

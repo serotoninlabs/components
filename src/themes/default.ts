@@ -6,6 +6,7 @@ export const defaultTheme: DefaultTheme = {
   fonts: {
     serif: "Nunito",
     sansSerif: "Nunito Sans",
+    mono: "Roboto Mono",
   },
   colors: {
     common: {
