@@ -61,10 +61,16 @@ export interface ModalProps extends ModalInnerProps, ModalOuterProps {
   onOuterClicked?(): void;
 }
 export const Modal: React.FC<ModalProps> = (props) => {
-  const el = useMemo(() => document.createElement("div"), []);
+  const el = useMemo(() => {
+    if (typeof document !== "undefined") {
+      return document.createElement("div");
+    }
+  }, []);
   useEffect(() => {
-    const bodyEl = document.getElementsByTagName("body");
-    bodyEl[0]!.appendChild(el);
+    if (el) {
+      const bodyEl = document.getElementsByTagName("body");
+      bodyEl[0]!.appendChild(el);
+    }
   }, []);
 
   const {
@@ -98,6 +104,10 @@ export const Modal: React.FC<ModalProps> = (props) => {
       </ModalInner>
     </ModalContainer>
   );
+
+  if (!el) {
+    return <></>;
+  }
 
   return ReactDOM.createPortal(content, el);
 };

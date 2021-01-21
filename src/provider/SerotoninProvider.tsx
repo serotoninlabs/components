@@ -19,11 +19,6 @@ export const SerotoninProvider: React.FC<SerotoninProviderProps> = ({
   rpcUrl,
   initializeAnalytics,
 }) => {
-  //   const analytics = useSafeAnalytics();
-  //   useEffect(() => {
-  //     handler.setAnalytics(analytics);
-  //   }, [analytics]);
-
   const handler = useMemo(() => new TxHandler(), []);
 
   async function analyticsAdjusted() {
