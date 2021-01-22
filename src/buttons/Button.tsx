@@ -1,7 +1,7 @@
 import React from "react";
-import chroma from "chroma-js";
 import styled from "styled-components";
 import { useAppAnalytics } from "../analytics/AppAnalyticsProvider";
+import { ButtonStyleStates, IPalette } from "../themes";
 
 export enum buttonSizes {
   SMALL = "SMALL",
@@ -12,7 +12,45 @@ export enum buttonSizes {
   NEW_MEDIUM = "NEW_MEDIUM",
 }
 
+const paddingObject: { [index: string]: string } = {
+  [buttonSizes.SMALL]: "8px 12px",
+  [buttonSizes.SMALL_WIDE]: "8px 60px",
+  [buttonSizes.MEDIUM]: "10px 25px",
+  [buttonSizes.MEDIUM_WIDE]: "9px 30px",
+  [buttonSizes.LARGE]: "20px 50px",
+};
+
+const spacingObject: { [index: string]: string } = {
+  [buttonSizes.SMALL]: "0.5px",
+  [buttonSizes.SMALL_WIDE]: "0.2px",
+  [buttonSizes.MEDIUM]: "1px",
+  [buttonSizes.MEDIUM_WIDE]: "0.2px",
+  [buttonSizes.LARGE]: "3px",
+};
+
+const fontObject: { [index: string]: string } = {
+  [buttonSizes.SMALL]: "12px",
+  [buttonSizes.MEDIUM]: "16px",
+  [buttonSizes.MEDIUM_WIDE]: "14px",
+  [buttonSizes.LARGE]: "24px",
+};
+
+const lineHeight: { [index: string]: string } = {
+  [buttonSizes.SMALL]: "12px",
+  [buttonSizes.MEDIUM]: "16px",
+  [buttonSizes.MEDIUM_WIDE]: "14px",
+  [buttonSizes.LARGE]: "24px",
+};
+
+const circleSize: { [index: string]: string } = {
+  [buttonSizes.SMALL]: "12px",
+  [buttonSizes.MEDIUM]: "40px",
+  [buttonSizes.MEDIUM_WIDE]: "40px",
+  [buttonSizes.LARGE]: "24px",
+};
+
 export type ButtonProps = {
+  size?: buttonSizes;
   className?: string;
   disabled?: boolean;
   href?: string;
@@ -28,12 +66,6 @@ export type ButtonProps = {
 export const Base: React.FC<ButtonProps> = (props) => {
   const { analytics } = useAppAnalytics();
   const { fireEvent, ...buttonProps } = props;
-
-  const component = (
-    <button className={props.className} {...buttonProps} onClick={onClick}>
-      {props.children}
-    </button>
-  );
 
   function onClick(
     event: React.MouseEvent<
@@ -62,92 +94,125 @@ export const Base: React.FC<ButtonProps> = (props) => {
     );
   }
 
-  return component;
+  return (
+    <button className={props.className} {...buttonProps} onClick={onClick}>
+      {props.children}
+    </button>
+  );
 };
 
 export const Button = styled(Base)`
+  appearance: none;
   border: none;
   background-color: transparent;
-  font-family: inherit;
+  font-family: ${(props) => props.theme.fonts.sansSerif};
   cursor: pointer;
   outline: none;
   border-radius: 50px;
+  text-decoration: none;
+  color: inherit;
+  font-size: 1em;
 
-  padding: 0.25em 0.75em;
+  padding: ${(props: any) => paddingObject[props.size || buttonSizes.MEDIUM]};
+  letter-spacing: ${(props: any) =>
+    spacingObject[props.size || buttonSizes.MEDIUM]};
+  font-size: ${(props: any) => fontObject[props.size || buttonSizes.MEDIUM]};
+  line-height: ${(props: any) => lineHeight[props.size || buttonSizes.MEDIUM]};
   min-width: 10ch;
   min-height: 34px;
 
   text-align: center;
   line-height: 1.1;
 
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   transition: 220ms all ease-in-out;
   :focus {
     outline: none;
   }
+
+  box-sizing: border-box;
 `;
 
-export const PrimaryButton = styled(Button)`
-  background-color: ${(props) => props.theme.buttons.primary.main};
-  color: ${(props) => props.theme.buttons.primary.text};
+function buttonCSS(button: ButtonStyleStates) {
+  return `
+  background-color: ${button.base.background};
+  color: ${button.base.text};
+  border: ${button.base.border};
+  outline: none;
   :focus {
-    outline: none;
-    background-color: ${(props) =>
-      chroma(props.theme.buttons.primary.main).desaturate(3).hex()};
+    color: ${button.focus.text};
+    background-color: ${button.focus.background};
+    border: ${button.focus.border};
+  }
+  &:hover {
+    color: ${button.hover.text};
+    background-color: ${button.hover.background};
+    border: ${button.hover.border};
   }
   &:active {
-    background-color: ${(props) =>
-      chroma(props.theme.buttons.primary.main).desaturate(3).hex()};
+    color: ${button.active.text};
+    background-color: ${button.active.background};
+    border: ${button.active.border};
   }
+  &:disabled {
+    color: ${button.disabled.text};
+    background-color: ${button.disabled.background};
+    border: ${button.disabled.border};
+  }
+  `;
+}
+
+export const PrimaryButton = styled(Button)`
+  ${(props) => buttonCSS(props.theme.buttons.primary)}
 `;
 export const InvertedButton = styled(Button)`
-  background-color: ${(props) => props.theme.buttons.primary.text};
-  color: ${(props) => props.theme.buttons.primary.main};
-  border: 1px solid ${(props) => props.theme.buttons.primary.main};
-  :focus {
-    outline: none;
-    background-color: ${(props) =>
-      chroma(props.theme.buttons.primary.text).desaturate(3).hex()};
-  }
-  &:active {
-    background-color: ${(props) =>
-      chroma(props.theme.buttons.primary.text).desaturate(3).hex()};
-  }
+  ${(props) => buttonCSS(props.theme.buttons.inverted)}
 `;
 
 export const SecondaryButton = styled(Button)`
-  background-color: ${(props) => props.theme.buttons.secondary.main};
-  color: ${(props) => props.theme.buttons.secondary.text};
-  :focus {
-    outline: none;
-    background-color: ${(props) =>
-      chroma(props.theme.buttons.secondary.main).desaturate(3).hex()};
-  }
-  &:active {
-    background-color: ${(props) =>
-      chroma(props.theme.buttons.secondary.main).desaturate(3).hex()};
-  }
+  ${(props) => buttonCSS(props.theme.buttons.secondary)}
 `;
 
 export const CirclePrimaryButton = styled(PrimaryButton)`
+  padding: 0;
   border-radius: 50%;
-  height: 40px;
-  width: 40px;
+  width: ${(props) => circleSize[props.size || buttonSizes.MEDIUM]};
+  height: ${(props) => circleSize[props.size || buttonSizes.MEDIUM]};
+  min-width: ${(props) => circleSize[props.size || buttonSizes.MEDIUM]};
+  min-height: ${(props) => circleSize[props.size || buttonSizes.MEDIUM]};
+  line-height: ${(props) => circleSize[props.size || buttonSizes.MEDIUM]};
 `;
-export const CircleSecondaryButton = styled(PrimaryButton)`
+export const CircleSecondaryButton = styled(SecondaryButton)`
+  padding: 0;
   border-radius: 50%;
-  height: 40px;
-  width: 40px;
+  width: ${(props) => circleSize[props.size || buttonSizes.MEDIUM]};
+  height: ${(props) => circleSize[props.size || buttonSizes.MEDIUM]};
+  min-width: ${(props) => circleSize[props.size || buttonSizes.MEDIUM]};
+  min-height: ${(props) => circleSize[props.size || buttonSizes.MEDIUM]};
+  line-height: ${(props) => circleSize[props.size || buttonSizes.MEDIUM]};
 `;
 
-export const ActionButton: React.FC<
-  { icon: React.ReactElement } & ButtonProps
-> = ({ icon, ...props }) => (
-  <CirclePrimaryButton {...props}>{icon}</CirclePrimaryButton>
+export type ActionButtonprops = { icon: React.FC; size?: number } & ButtonProps;
+
+export const ActionButton: React.FC<ActionButtonprops> = ({
+  icon: Icon,
+  ...props
+}) => (
+  <CirclePrimaryButton {...props}>
+    <Icon />
+  </CirclePrimaryButton>
 );
-export const SecondaryActionButton: React.FC<
-  { icon: React.ReactElement } & ButtonProps
-> = ({ icon, ...props }) => (
-  <CircleSecondaryButton {...props}>{icon}</CircleSecondaryButton>
+
+export const SecondaryActionButton: React.FC<ActionButtonprops> = ({
+  icon: Icon,
+  ...props
+}) => (
+  <CircleSecondaryButton {...props}>
+    <Icon />
+  </CircleSecondaryButton>
 );
 
 export const OldPrimaryButton = styled(Button)`

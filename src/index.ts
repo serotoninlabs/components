@@ -4,6 +4,7 @@ export * from "./buttons";
 export * from "./cards";
 export * from "./containers";
 export * from "./ethereum";
+export * from "./icons";
 export * from "./inputs";
 export * from "./fun/PartyWizard";
 export * from "./GlobalStyle";

@@ -11,6 +11,19 @@ export interface IPalette {
   borderRadius?: string;
 }
 
+export interface ButtonStyleProps {
+  background: string;
+  text: string;
+  border: string;
+}
+export interface ButtonStyleStates {
+  base: ButtonStyleProps;
+  disabled: ButtonStyleProps;
+  hover: ButtonStyleProps;
+  active: ButtonStyleProps;
+  focus: ButtonStyleProps;
+}
+
 declare module "styled-components" {
   export interface DefaultTheme {
     fonts: {
@@ -19,8 +32,9 @@ declare module "styled-components" {
       mono: string;
     };
     buttons: {
-      primary: IPalette;
-      secondary: IPalette;
+      primary: ButtonStyleStates;
+      secondary: ButtonStyleStates;
+      inverted: ButtonStyleStates;
     };
     containers: {
       highlight: IPalette;

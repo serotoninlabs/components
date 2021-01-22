@@ -10,12 +10,85 @@ export const defaultTheme: DefaultTheme = {
   },
   buttons: {
     primary: {
-      main: "#000",
-      text: "#fff",
+      base: {
+        background: "#000",
+        text: "#fff",
+        border: "1px solid #000",
+      },
+      disabled: {
+        background: "#ddd",
+        text: "#aaa",
+        border: "none",
+      },
+      hover: {
+        background: "#444",
+        text: "#fff",
+        border: "1px solid #000",
+      },
+      active: {
+        background: "#000",
+        text: "#fff",
+        border: "1px solid #000",
+      },
+      focus: {
+        background: "#000",
+        text: "#fff",
+        border: "1px solid #000",
+      },
+    },
+    inverted: {
+      base: {
+        background: "#fff",
+        text: "#000",
+        border: "1px solid #000",
+      },
+      disabled: {
+        background: "#ddd",
+        text: "#aaa",
+        border: "none",
+      },
+      hover: {
+        background: "#fff",
+        text: "blue",
+        border: "1px solid blue",
+      },
+      active: {
+        background: "#000",
+        text: "#fff",
+        border: "none",
+      },
+      focus: {
+        background: "#000",
+        text: "#fff",
+        border: "none",
+      },
     },
     secondary: {
-      main: "#FEA8A7",
-      text: "#fff",
+      base: {
+        background: "#FEA8A7",
+        text: "#fff",
+        border: "none",
+      },
+      disabled: {
+        background: "#f2d9d9",
+        text: "#fff",
+        border: "none",
+      },
+      hover: {
+        background: "#fe9c9a",
+        text: "#fff",
+        border: "none",
+      },
+      active: {
+        background: "#000",
+        text: "#fff",
+        border: "1px solid #000",
+      },
+      focus: {
+        background: "#000",
+        text: "#fff",
+        border: "1px solid #000",
+      },
     },
   },
   containers: {
