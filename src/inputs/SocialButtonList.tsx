@@ -1,16 +1,10 @@
 import React from "react";
-import { ButtonGroup, ButtonProps } from "./Button";
-import { Button } from "./Button";
+import { ButtonGroup, ButtonProps } from "../buttons/Button";
+import { Button } from "../buttons/Button";
 
 import * as Social from "../icons/SocialIcons";
 import { RowContainer } from "../containers";
-
-export type IconButtonProps = {
-  icon: React.ReactElement;
-} & ButtonProps;
-export const IconButton: React.FC<IconButtonProps> = ({ icon, ...props }) => {
-  return <Button {...props}>{icon}</Button>;
-};
+import { IconButton } from "../buttons/IconButton";
 
 export const FacebookIconButton: React.FC<ButtonProps> = (props) => {
   return <IconButton icon={<Social.FacebookIcon />} {...props} />;

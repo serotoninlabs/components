@@ -6,6 +6,9 @@ export type SubmitButtonProps = {
   fireEvent?: string | { name: string; data: any };
 } & ButtonProps;
 
-export const SubmitButton: React.FC<SubmitButtonProps> = (props) => (
-  <Button as="input" type="submit" value={props.label} {...props} />
-);
+export const SubmitButton: React.FC<SubmitButtonProps> = ({
+  label,
+  fireEvent,
+  size,
+  ...props
+}) => <Button as="input" type="submit" value={label} {...props} />;

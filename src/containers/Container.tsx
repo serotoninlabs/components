@@ -102,7 +102,7 @@ export const ActionCard: React.FC<ContainerProps & ButtonProps> = ({
         `}
       >
         <div>{children}</div>
-        <ActionButton icon={<ForwardIcon />} onClick={onClick} />
+        <ActionButton icon={ForwardIcon} onClick={onClick} />
       </Row>
     </Card>
   );

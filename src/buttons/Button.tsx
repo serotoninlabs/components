@@ -42,11 +42,11 @@ const lineHeight: { [index: string]: string } = {
   [buttonSizes.LARGE]: "24px",
 };
 
-const circleSize: { [index: string]: string } = {
-  [buttonSizes.SMALL]: "12px",
+export const circleSize: { [index: string]: string } = {
+  [buttonSizes.SMALL]: "22px",
   [buttonSizes.MEDIUM]: "40px",
   [buttonSizes.MEDIUM_WIDE]: "40px",
-  [buttonSizes.LARGE]: "24px",
+  [buttonSizes.LARGE]: "70px",
 };
 
 export type ButtonProps = {
@@ -176,6 +176,15 @@ export const SecondaryButton = styled(Button)`
   ${(props) => buttonCSS(props.theme.buttons.secondary)}
 `;
 
+export const CircleButton = styled(Button)`
+  padding: 0;
+  border-radius: 50%;
+  width: ${(props) => circleSize[props.size || buttonSizes.MEDIUM]};
+  height: ${(props) => circleSize[props.size || buttonSizes.MEDIUM]};
+  min-width: ${(props) => circleSize[props.size || buttonSizes.MEDIUM]};
+  min-height: ${(props) => circleSize[props.size || buttonSizes.MEDIUM]};
+  line-height: ${(props) => circleSize[props.size || buttonSizes.MEDIUM]};
+`;
 export const CirclePrimaryButton = styled(PrimaryButton)`
   padding: 0;
   border-radius: 50%;
@@ -195,7 +204,9 @@ export const CircleSecondaryButton = styled(SecondaryButton)`
   line-height: ${(props) => circleSize[props.size || buttonSizes.MEDIUM]};
 `;
 
-export type ActionButtonprops = { icon: React.FC; size?: number } & ButtonProps;
+export type ActionButtonprops = {
+  icon: React.FC;
+} & ButtonProps;
 
 export const ActionButton: React.FC<ActionButtonprops> = ({
   icon: Icon,
