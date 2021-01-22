@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { SectionHeading, Text } from "../text/text";
-import { Container, ContainerSize } from "./Container";
+import { SectionHeading, Text } from "../text";
+import { Container, ContainerSize } from "../containers/Container";
 
 export interface CardProps {
   href?: string;
@@ -19,7 +19,7 @@ export const BaseCard: React.FunctionComponent<CardProps> = (props) => {
   );
 };
 
-export const Card = styled(Container)`
+export const CardOld = styled(Container)`
   border-radius: ${(props) => props.theme.borderRadius};
   background-color: ${(props) => props.theme.colors.primary.main};
   color: ${(props) => props.theme.colors.primary.text};
@@ -33,7 +33,7 @@ export const CardHeading = styled(SectionHeading)``;
 export const CardContent = styled(Text)``;
 export const CardImage = styled.img``;
 
-export const Panel = styled(Card)`
+export const Panel = styled(CardOld)`
   width: 100%;
   margin-bottom: 20px;
 `;

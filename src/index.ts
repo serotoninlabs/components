@@ -10,7 +10,7 @@ export * from "./GlobalStyle";
 export * from "./loading/Loading";
 export * from "./meta/Meta";
 export * from "./provider/SerotoninProvider";
-export * from "./text/text";
+export * from "./text";
 export * from "./themes";
 export * from "./utils/media";
 export * from "./utils/px2vw";

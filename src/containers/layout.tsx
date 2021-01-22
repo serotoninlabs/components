@@ -7,6 +7,14 @@ export const Section = styled.section`
   color: ${(props) => props.theme.colors.primary.text};
 `;
 
+export const Row = styled.div<{ align?: string }>`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: ${(props) => (props.align ? props.align : "start")};
+`;
+export const RowContainer = Row;
+
 export const GrowingDiv = styled.div`
   flex-grow: 1;
 `;
@@ -14,12 +22,6 @@ export const GrowingDiv = styled.div`
 export interface RowContainerProps {
   align?: string;
 }
-export const RowContainer = styled.div<RowContainerProps>`
-  display: flex;
-  flex-direction: row;
-  align-items: center};
-  justify-content: ${(props) => (props.align ? props.align : "center")};
-`;
 
 export const FiftyFifty = styled(RowContainer)`
   > div {

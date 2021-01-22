@@ -2,11 +2,39 @@ import { DefaultTheme } from "styled-components";
 
 export const defaultTheme: DefaultTheme = {
   borderRadius: "3px",
-  backgroundColor: "#F9FAFC", // grey
+  backgroundColor: "#F3F3F3", // grey
   fonts: {
     serif: "Nunito",
-    sansSerif: "Nunito Sans",
+    sansSerif: "Inter",
     mono: "Roboto Mono",
+  },
+  buttons: {
+    primary: {
+      main: "#000",
+      text: "#fff",
+    },
+    secondary: {
+      main: "#FEA8A7",
+      text: "#fff",
+    },
+  },
+  containers: {
+    highlight: {
+      main: "#F6E6E7",
+      text: "rgb(0,0,0,0.4)",
+      heading: "#000",
+      subheading: "rgb(0,0,0,0.4)",
+      border: "1px solid rgb(0,0,0,0.05)",
+      borderRadius: "12px",
+    },
+    card: {
+      main: "#fff",
+      text: "rgb(0,0,0,0.4)",
+      heading: "#000",
+      subheading: "rgb(0,0,0,0.4)",
+      border: "1px solid rgb(0,0,0,0.05)",
+      borderRadius: "20px",
+    },
   },
   colors: {
     common: {
@@ -14,7 +42,7 @@ export const defaultTheme: DefaultTheme = {
       black: "black",
     },
     primary: {
-      main: "#FFFFFF",
+      main: "#000000",
       gradient: ["#FFFFFF", "#000000"],
       text: "#3F4551",
       border: "1px solid #dfdfdf",

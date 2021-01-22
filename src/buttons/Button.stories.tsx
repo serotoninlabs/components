@@ -1,19 +1,28 @@
 import { Meta, Story } from "@storybook/react";
-import { Button, ButtonProps } from "./Button";
+import * as Buttons from "./Button";
+import { ForwardIcon } from "../icons/Actions";
 
 export default {
-  title: "Example/Button",
-  component: Button,
+  title: "Components/Buttons",
 } as Meta;
 
-const Template: Story<ButtonProps> = (args) => {
-  return <Button {...args}>Button</Button>;
+export const BaseButton = () => {
+  return <Buttons.Base>Base Button</Buttons.Base>;
 };
 
-export const SimpleButton = Template.bind({});
-const s1: ButtonProps = {
-  onClick(e) {
-    console.log({ e });
-  },
+export const Button = (args) => {
+  return (
+    <div>
+      <Buttons.Button>{args.label}</Buttons.Button>
+      <Buttons.PrimaryButton>{args.label}</Buttons.PrimaryButton>
+      <Buttons.InvertedButton>{args.label}</Buttons.InvertedButton>
+      <Buttons.ActionButton icon={<ForwardIcon />} />
+
+      <Buttons.SecondaryButton>{args.label}</Buttons.SecondaryButton>
+      <Buttons.SecondaryActionButton icon={<ForwardIcon />} />
+    </div>
+  );
 };
-SimpleButton.args = s1;
+Button.args = {
+  label: "hello",
+};

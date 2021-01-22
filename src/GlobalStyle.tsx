@@ -26,6 +26,22 @@ export const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 
+  button.button {
+    border: none;
+    background-color: transparent;
+    font-family: inherit;
+    padding: 0;
+    cursor: pointer;
+  
+    @media screen and (-ms-high-contrast: active) {
+      border: 2px solid currentcolor;
+    }
+  }
+  
+  ul, ol {
+    margin: 10px;
+  }
+
   *,
   *::before,
   *::after {
@@ -33,29 +49,26 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   :root {
-    font-size: ${px2vw(12)};
+    font-size: 16;
     @media (min-width: 768px) {
-      font-size: ${px2vw(18)};
+      font-size: 16;
     }
     @media (min-width: 1024px) {
-      font-size: ${px2vw(12)};
+      font-size: 16;
     }
   }
 
-  @media (max-width: 768px) {
-    font-size: ${px2vw(32)};
-  }
+  // @media (max-width: 768px) {
+  //   font-size: ${px2vw(32)};
+  // }
 
-  @media (min-width: 768px) {
-    font-size: ${px2vw(18)};
-  }
+  // @media (min-width: 768px) {
+  //   font-size: ${px2vw(18)};
+  // }
 
-  @media (min-width: 1024px) {
-    font-size: ${px2vw(12)};
-  }
+  // @media (min-width: 1024px) {
+  //   font-size: ${px2vw(12)};
+  // }
 
-  ul, ol {
-    margin: 10px;
-  }
 
 `;

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Text } from "../text/text";
+import { Text } from "../text";
 import { FieldError } from "./Base";
 
 const Container = styled.div`

@@ -3,8 +3,12 @@ import { DefaultTheme } from "styled-components";
 export interface IPalette {
   main: string;
   text: string;
-  gradient: string[];
+  heading?: string;
+  subheading?: string;
+  scaled?: string;
+  gradient?: string[];
   border?: string;
+  borderRadius?: string;
 }
 
 declare module "styled-components" {
@@ -13,6 +17,14 @@ declare module "styled-components" {
       serif: string;
       sansSerif: string;
       mono: string;
+    };
+    buttons: {
+      primary: IPalette;
+      secondary: IPalette;
+    };
+    containers: {
+      highlight: IPalette;
+      card: IPalette;
     };
     backgroundColor: string;
     borderRadius: string;

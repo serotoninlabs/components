@@ -14,7 +14,7 @@ interface StoryProps {
 }
 
 export default {
-  title: "Example/Modal",
+  title: "Components/Containers",
   component: Modal,
 } as Meta;
 
