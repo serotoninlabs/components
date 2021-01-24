@@ -9,8 +9,8 @@ const SelectContainer = styled.div`
   width: 100%;
   min-width: 15ch;
   max-width: 30ch;
-  border: 1px solid #777;
-  border-radius: 0.25em;
+  border: ${(props) => props.theme.colors.inputs.border};
+  border-radius: 6px;
   padding: 0.25em 0.5em;
   font-size: 1.25rem;
   cursor: pointer;

@@ -58,17 +58,4 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-  // @media (max-width: 768px) {
-  //   font-size: ${px2vw(32)};
-  // }
-
-  // @media (min-width: 768px) {
-  //   font-size: ${px2vw(18)};
-  // }
-
-  // @media (min-width: 1024px) {
-  //   font-size: ${px2vw(12)};
-  // }
-
-
 `;

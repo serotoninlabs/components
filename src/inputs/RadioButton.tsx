@@ -1,7 +1,9 @@
 import React, { MouseEvent, useRef } from "react";
 import styled from "styled-components";
 import { InputLabel } from "./Base";
-import { Button } from "../buttons/Button";
+import { Button, ButtonProps } from "../buttons/Button";
+import { FacebookIcon } from "../icons/SocialIcons";
+import { IconButton } from "../buttons";
 
 export interface OvalImageProps {
   height?: number;
@@ -27,6 +29,16 @@ export const OvalImage = styled.div`
   }
 `;
 
+export const RadioButtonDiv = styled.div`
+  input {
+    display: none;
+  }
+  label + input {
+    color: red;
+    background-color: blue;
+  }
+`;
+
 export interface RadioButtonProps {
   className?: string;
   inputRef?: any;
@@ -35,31 +47,19 @@ export interface RadioButtonProps {
   disabled?: boolean;
   name?: string;
   defaultValue?: any;
+  idx?: number;
+  as?: React.FC<ButtonProps>;
 }
-
-export const RadioButtonDiv = styled.div`
-  input {
-    display: none;
-  }
-  input + button {
-    background-image: none;
-    background-color: lightblue;
-  }
-  input:checked + button {
-    background-color: blue;
-    border: 1px solid blue;
-    color: white;
-  }
-`;
 export const RadioButton: React.FunctionComponent<RadioButtonProps> = (
   props
 ) => {
   let input = useRef<any>(null);
   const { onChange, children, name, inputRef } = props;
   const clickHandler = (e: MouseEvent) => {
-    e.preventDefault();
-    // input = ref;
-    input.current.checked = true;
+    // e.preventDefault();
+    input.current.checked = !input.current.checked;
+    input.current.click();
+    console.log("clicky", input.current);
 
     if (onChange) {
       onChange(name, input.current.value);
@@ -67,21 +67,31 @@ export const RadioButton: React.FunctionComponent<RadioButtonProps> = (
   };
   const defaultChecked = props.defaultValue === props.value;
 
+  let Component: RadioButtonProps["as"] = Button;
+  if (props.as) {
+    Component = props.as;
+  }
+
+  console.log("beep", props.idx);
   return (
     <RadioButtonDiv>
       <input
-        type="radio"
+        type="checkbox"
         value={props.value}
         defaultChecked={defaultChecked}
-        name={name}
+        name={`${name}.${props.idx}`}
+        id={`${name}.${props.idx}`}
         ref={(ref) => {
           inputRef(ref);
           input.current = ref;
         }}
       />
-      <Button onClick={clickHandler} disabled={props.disabled}>
-        {children}
-      </Button>
+      <label htmlFor={`${name}.${props.idx}`}>
+        {/* <Component disabled={props.disabled}>{children}</Component> */}
+        <IconButton
+          icon={<FacebookIcon size={"26px"} onClick={clickHandler} />}
+        />
+      </label>
     </RadioButtonDiv>
   );
 };
@@ -128,27 +138,87 @@ const RadioDiv = styled.div`
     flex-direction: rows;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
   }
 `;
-export const RadioInput = (props: RadioInputProps) => {
-  const { defaultValue, onChange, label, name, inputRef, children } = props;
+export const RadioInput: React.FC<RadioInputProps> = (props) => {
+  const {
+    defaultValue,
+    onChange,
+    label,
+    name,
+    inputRef,
+    children,
+    className,
+  } = props;
 
   const childrenWithProps = React.Children.map(
     children,
-    (child: React.ReactChild) =>
+    (child: React.ReactChild, idx: number) =>
       React.cloneElement(child as React.ReactElement, {
         name,
         onChange,
         defaultValue,
         inputRef,
+        idx,
       })
   );
 
   return (
-    <RadioDiv>
+    <RadioDiv className={className}>
       {label ? <InputLabel>{label}</InputLabel> : null}
       <div>{childrenWithProps}</div>
     </RadioDiv>
+  );
+};
+
+export interface RadioOptionProps {
+  className?: string;
+  inputRef?: any;
+  onChange?: any;
+  value: any;
+  disabled?: boolean;
+  name?: string;
+  defaultValue?: any;
+  idx?: number;
+  as?: React.FC<ButtonProps>;
+}
+export const RadioOption: React.FunctionComponent<RadioOptionProps> = (
+  props
+) => {
+  let input = useRef<any>(null);
+  const { onChange, children, name, inputRef } = props;
+  const defaultChecked = props.defaultValue === props.value;
+
+  let Component: RadioButtonProps["as"] = Button;
+  if (props.as) {
+    Component = props.as;
+  }
+
+  return (
+    <RadioButtonDiv>
+      <input
+        type="checkbox"
+        value={props.value}
+        defaultChecked={defaultChecked}
+        name={`${name}.${props.idx}`}
+        id={`${name}.${props.idx}`}
+        ref={(ref) => {
+          console.log("ref", ref);
+          if (inputRef) {
+            if (typeof inputRef === "function") {
+              inputRef(ref);
+            } else {
+              // todo(dankins): idk if this actually works
+              console.log("ref2", inputRef);
+              inputRef.current = ref;
+            }
+          }
+
+          input.current = ref;
+        }}
+      />
+      <label htmlFor={`${name}.${props.idx}`}>{children}</label>
+    </RadioButtonDiv>
   );
 };

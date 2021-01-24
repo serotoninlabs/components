@@ -1,10 +1,27 @@
 import React from "react";
+import styled from "styled-components";
 import { BaseInput, BaseInputProps, InputContainer } from "./Base";
 import { InputLabel } from "./Base";
 import { HelperText } from "./HelperText";
 import { InputError } from "./InputError";
 
-export type FullTextInputProps = BaseInputProps;
+export const StyledTextArea = styled.textarea`
+  font-size: inherit;
+  padding: 8px;
+  appearance: none;
+  font-family: ${(props) => props.theme.fonts.sansSerif};
+  border: ${(props) => props.theme.colors.inputs.border};
+  border-radius: ${(props) => props.theme.colors.inputs.borderRadius};
+  background-color: ${(props) => props.theme.colors.inputs.background};
+  outline: none;
+  resize: none;
+`;
+
+export type FullTextInputProps = BaseInputProps & {
+  rows?: number;
+  cols?: number;
+  maxLength?: number;
+};
 export const FullTextInput: React.FunctionComponent<FullTextInputProps> = (
   props
 ) => {
@@ -13,9 +30,16 @@ export const FullTextInput: React.FunctionComponent<FullTextInputProps> = (
   return (
     <InputContainer>
       <InputLabel>{label}</InputLabel>
-      <BaseInput as="textarea" name={name} ref={inputRef} autoComplete="off">
+      <StyledTextArea
+        name={name}
+        ref={inputRef}
+        cols={props.cols}
+        rows={props.rows}
+        autoComplete="off"
+        maxLength={props.maxLength}
+      >
         {children}
-      </BaseInput>
+      </StyledTextArea>
       {props.helperText && !props.error ? (
         <HelperText helperText={props.helperText} />
       ) : (

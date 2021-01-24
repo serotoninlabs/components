@@ -53,6 +53,7 @@ declare module "styled-components" {
         background: string;
         label: string;
         border: string;
+        borderRadius: string;
       };
       notifications: {
         default: IPalette;

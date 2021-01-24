@@ -9,13 +9,13 @@ export type ContainerSize = "full" | "small" | "medium" | "large";
 const containerSizes = {
   mobile: {
     small: "400px",
-    medium: "200px",
+    medium: "400px",
     large: "400px",
     full: "100%",
   },
   tablet: {
     small: "300px",
-    medium: "200px",
+    medium: "300px",
     large: "400px",
     full: "100%",
   },

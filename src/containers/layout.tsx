@@ -55,13 +55,13 @@ export const MainContentContainer = styled(Section)`
 
     @media (min-width: 1024px) {
       width: 1024px;
-      min-height: ${px2vw(300)};
+      min-height: ${px2vw(1024)};
       height: 100%;
     }
 
     @media (min-width: 1280px) {
       width: 1280px;
-      min-height: ${px2vw(300)};
+      min-height: ${px2vw(1280)};
       height: 100%;
     }
   }

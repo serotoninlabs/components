@@ -78,7 +78,12 @@ export const TagInput = () => {
   const tags = watch("tags");
   return (
     <form>
-      <Tags name="tags" suggestions={suggestions} control={control} />
+      <Tags
+        label="Tags Input"
+        name="tags"
+        suggestions={suggestions}
+        control={control}
+      />
       <div>Selection: {tags && tags.map((t) => t.name).join(", ")}</div>
     </form>
   );

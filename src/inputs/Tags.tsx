@@ -1,14 +1,18 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import ReactTags, { Tag } from "react-tag-autocomplete";
-import { useController, UseFormMethods, Controller } from "react-hook-form";
+import { useController, UseFormMethods } from "react-hook-form";
+import { BaseInputProps, InputContainer, InputLabel } from "./Base";
+import { InputError } from "./InputError";
+import { HelperText } from "./HelperText";
 
 export const TagsContainer = styled.div`
+  font-family: ${(props) => props.theme.fonts.sansSerif};
   .react-tags {
     position: relative;
     padding: 6px 0 0 6px;
-    border: 1px solid #d1d1d1;
-    border-radius: 10px;
+    border: ${(props) => props.theme.colors.inputs.border};
+    border-radius: ${(props) => props.theme.colors.inputs.borderRadius};
 
     /* shared font styles */
     font-size: 1em;
@@ -31,9 +35,10 @@ export const TagsContainer = styled.div`
     box-sizing: border-box;
     margin: 0 6px 6px 0;
     padding: 6px 8px;
-    border: 1px solid #d1d1d1;
-    border-radius: 2px;
-    background: #f1f1f1;
+    border: none;
+    border-radius: 11px;
+    background: #eaeaea;
+    color: #a4a4a4;
 
     /* match the font styles */
     font-size: inherit;
@@ -41,8 +46,8 @@ export const TagsContainer = styled.div`
   }
 
   .react-tags__selected-tag:after {
-    content: "X";
-    color: #aaa;
+    content: "✕";
+    color: #d4d4d4;
     margin-left: 8px;
   }
 
@@ -139,21 +144,19 @@ export const TagsContainer = styled.div`
 
 export { Tag };
 
-export interface TagsBaseProps {
+export type TagsBaseProps = {
   onChange(tags: Tag[]): void;
   tags: Tag[];
   suggestions?: Tag[];
-  inputRef?: any;
-}
+} & BaseInputProps;
 export const TagsBase: React.FC<TagsBaseProps> = ({
   onChange,
   tags,
   suggestions,
+  label,
+  helperText,
+  error,
 }) => {
-  // const [tags, setTags] = useState<Tag[]>([]);
-
-  // useEffect(() => props.onChange && props.onChange(tags), [tags]);
-
   function add(tag: Tag): void {
     onChange(tags.concat([tag]));
   }
@@ -162,27 +165,35 @@ export const TagsBase: React.FC<TagsBaseProps> = ({
   }
 
   return (
-    <TagsContainer>
-      <ReactTags
-        suggestions={suggestions}
-        tags={tags}
-        allowNew={true}
-        onAddition={add}
-        onDelete={deleteTag}
-      />
-    </TagsContainer>
+    <InputContainer>
+      <InputLabel>{label}</InputLabel>
+      <TagsContainer>
+        <ReactTags
+          suggestions={suggestions}
+          tags={tags}
+          allowNew={true}
+          onAddition={add}
+          onDelete={deleteTag}
+        />
+      </TagsContainer>
+      {helperText && !error ? (
+        <HelperText helperText={helperText} />
+      ) : (
+        <span> </span>
+      )}
+      {error ? <InputError error={error} /> : undefined}
+    </InputContainer>
   );
 };
 
-export interface TagsProps {
+export type TagsProps = {
   suggestions?: Tag[];
-  name: string;
   control: UseFormMethods["control"];
-}
-export const Tags = (props: TagsProps) => {
+} & BaseInputProps;
+export const Tags: React.FC<TagsProps> = (props: TagsProps) => {
+  const { control, ...rest } = props;
   const {
     field: { onChange, value },
-    meta: { invalid, isTouched, isDirty },
   } = useController({
     name: props.name,
     control: props.control,
@@ -190,11 +201,5 @@ export const Tags = (props: TagsProps) => {
     defaultValue: [],
   });
 
-  return (
-    <TagsBase
-      onChange={onChange}
-      suggestions={props.suggestions}
-      tags={value}
-    />
-  );
+  return <TagsBase onChange={onChange} tags={value} {...rest} />;
 };

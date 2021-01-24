@@ -94,17 +94,17 @@ export const defaultTheme: DefaultTheme = {
   containers: {
     highlight: {
       main: "#F6E6E7",
-      text: "rgb(0,0,0,0.4)",
+      text: "#999",
       heading: "#000",
-      subheading: "rgb(0,0,0,0.4)",
+      subheading: "#999",
       border: "1px solid rgb(0,0,0,0.05)",
       borderRadius: "12px",
     },
     card: {
       main: "#fff",
-      text: "rgb(0,0,0,0.4)",
+      text: "#999",
       heading: "#000",
-      subheading: "rgb(0,0,0,0.4)",
+      subheading: "#999",
       border: "1px solid rgb(0,0,0,0.05)",
       borderRadius: "20px",
     },
@@ -132,8 +132,9 @@ export const defaultTheme: DefaultTheme = {
     },
     inputs: {
       background: "white",
-      label: "#aaa",
-      border: "1px solid black",
+      label: "#000",
+      border: "1px solid #999",
+      borderRadius: "6px",
     },
     notifications: {
       default: {
