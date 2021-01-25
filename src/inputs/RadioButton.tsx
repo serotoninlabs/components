@@ -1,9 +1,7 @@
 import React, { MouseEvent, useRef } from "react";
 import styled from "styled-components";
 import { InputLabel } from "./Base";
-import { Button, ButtonProps } from "../buttons/Button";
-import { FacebookIcon } from "../icons/SocialIcons";
-import { IconButton } from "../buttons";
+import { PrimaryButton, ButtonProps } from "../buttons/Button";
 
 export interface OvalImageProps {
   height?: number;
@@ -56,41 +54,32 @@ export const RadioButton: React.FunctionComponent<RadioButtonProps> = (
   let input = useRef<any>(null);
   const { onChange, children, name, inputRef } = props;
   const clickHandler = (e: MouseEvent) => {
-    // e.preventDefault();
-    input.current.checked = !input.current.checked;
     input.current.click();
-    console.log("clicky", input.current);
-
+    input.current.checked = true;
+    // input.current.onchange();
     if (onChange) {
       onChange(name, input.current.value);
     }
   };
   const defaultChecked = props.defaultValue === props.value;
 
-  let Component: RadioButtonProps["as"] = Button;
-  if (props.as) {
-    Component = props.as;
-  }
-
-  console.log("beep", props.idx);
   return (
     <RadioButtonDiv>
-      <input
-        type="checkbox"
-        value={props.value}
-        defaultChecked={defaultChecked}
-        name={`${name}.${props.idx}`}
-        id={`${name}.${props.idx}`}
-        ref={(ref) => {
-          inputRef(ref);
-          input.current = ref;
-        }}
-      />
-      <label htmlFor={`${name}.${props.idx}`}>
-        {/* <Component disabled={props.disabled}>{children}</Component> */}
-        <IconButton
-          icon={<FacebookIcon size={"26px"} onClick={clickHandler} />}
+      <label>
+        <input
+          type="radio"
+          value={props.value}
+          defaultChecked={defaultChecked}
+          name={name}
+          ref={(ref) => {
+            console.log("ref change");
+            inputRef(ref);
+            input.current = ref;
+          }}
         />
+        <PrimaryButton onClick={clickHandler} disabled={props.disabled}>
+          {children}
+        </PrimaryButton>
       </label>
     </RadioButtonDiv>
   );
@@ -190,7 +179,7 @@ export const RadioOption: React.FunctionComponent<RadioOptionProps> = (
   const { onChange, children, name, inputRef } = props;
   const defaultChecked = props.defaultValue === props.value;
 
-  let Component: RadioButtonProps["as"] = Button;
+  let Component: RadioButtonProps["as"] = PrimaryButton;
   if (props.as) {
     Component = props.as;
   }

@@ -31,9 +31,9 @@ export const defaultTheme: DefaultTheme = {
         border: "1px solid #000",
       },
       focus: {
-        background: "#000",
+        background: "#666",
         text: "#fff",
-        border: "1px solid #000",
+        border: "1px solid #222",
       },
     },
     inverted: {

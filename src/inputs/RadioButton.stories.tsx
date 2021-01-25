@@ -12,12 +12,8 @@ export const RadioInput = (props) => {
   return (
     <div>
       <RadioInputComponent name="food" inputRef={register}>
-        <RadioButton value="beef" as={PrimaryButton}>
-          Beef
-        </RadioButton>
-        <RadioButton value="pork" as={PrimaryButton}>
-          Pork
-        </RadioButton>
+        <RadioButton value="beef">Beef</RadioButton>
+        <RadioButton value="pork">Pork</RadioButton>
       </RadioInputComponent>
       <div>value: {JSON.stringify(watch("food"))}</div>
     </div>
