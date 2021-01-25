@@ -60,8 +60,8 @@ export const MainContentContainer = styled(Section)`
     }
 
     @media (min-width: 1280px) {
-      width: 1280px;
-      min-height: ${px2vw(1280)};
+      width: 1024px;
+      min-height: ${px2vw(1024)};
       height: 100%;
     }
   }

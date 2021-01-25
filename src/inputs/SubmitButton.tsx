@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, ButtonProps } from "../buttons/Button";
+import { PrimaryButton, ButtonProps } from "../buttons/Button";
 
 export type SubmitButtonProps = {
   label: string;
@@ -11,4 +11,4 @@ export const SubmitButton: React.FC<SubmitButtonProps> = ({
   fireEvent,
   size,
   ...props
-}) => <Button as="input" type="submit" value={label} {...props} />;
+}) => <PrimaryButton as="input" type="submit" value={label} {...props} />;

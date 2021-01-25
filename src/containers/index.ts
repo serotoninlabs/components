@@ -1,3 +1,4 @@
+export * from "./ActionFooter";
 export * from "./Modal";
 export * from "./Hero";
 export * from "./layout";

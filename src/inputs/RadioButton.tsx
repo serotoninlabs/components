@@ -72,7 +72,6 @@ export const RadioButton: React.FunctionComponent<RadioButtonProps> = (
           defaultChecked={defaultChecked}
           name={name}
           ref={(ref) => {
-            console.log("ref change");
             inputRef(ref);
             input.current = ref;
           }}
@@ -193,13 +192,11 @@ export const RadioOption: React.FunctionComponent<RadioOptionProps> = (
         name={`${name}.${props.idx}`}
         id={`${name}.${props.idx}`}
         ref={(ref) => {
-          console.log("ref", ref);
           if (inputRef) {
             if (typeof inputRef === "function") {
               inputRef(ref);
             } else {
               // todo(dankins): idk if this actually works
-              console.log("ref2", inputRef);
               inputRef.current = ref;
             }
           }
