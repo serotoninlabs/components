@@ -19,6 +19,7 @@ export function useEagerConnect() {
         return;
       }
 
+      console.log("stored wallet choice:", walletChoice);
       switch (walletChoice) {
         case "metamask":
           const injected = await injectedFactory(requiredChainId);
@@ -44,6 +45,7 @@ export function useEagerConnect() {
               );
             }
           }
+          break;
         case "magic":
           const email = localStorage.getItem("MAGIC_EMAIL");
           const magic = await magicFactory(
@@ -54,6 +56,7 @@ export function useEagerConnect() {
           activate(magic, undefined, true).catch(() => {
             setTried(true);
           });
+          break;
       }
     }
 

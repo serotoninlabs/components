@@ -25,6 +25,9 @@ export const GlobalStyle = createGlobalStyle`
   a, a:visited {
     text-decoration: none;
   }
+  a:visited {
+    color: inherit;
+  }
 
   button.button {
     border: none;

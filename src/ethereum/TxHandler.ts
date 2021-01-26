@@ -1,4 +1,4 @@
-import { ContractTransaction, ethers } from "ethers";
+import { ContractTransaction, ethers, Transaction } from "ethers";
 import { createContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Map, Set, Record } from "immutable";
@@ -20,19 +20,22 @@ const TxRecord = Record<TransactionData>({
   meta: undefined,
   status: "new",
   error: undefined,
+  tx: undefined,
   receipt: undefined,
 });
 
-export type Transaction = {
+export type TransactionInput = {
   tx?: Promise<ethers.ContractTransaction>;
-  receipt?: ethers.providers.TransactionReceipt;
-} & TransactionData;
+  link?: string;
+  meta?: any;
+};
 
 export type TransactionData = {
   link?: string;
   meta?: any;
   status?: TxStatus;
   error?: string;
+  tx?: ContractTransaction;
   receipt?: ethers.providers.TransactionReceipt;
 };
 
@@ -45,7 +48,9 @@ export class TxHandler {
   private analytics!: AppAnalytics;
   private provider!: Provider;
   private state: State;
-  private callbacks: { [key: string]: (state: State) => void };
+  private callbacks: {
+    [key: string]: (state: State, previousState?: State) => void;
+  };
 
   constructor() {
     this.state = createDefaultState();
@@ -74,7 +79,7 @@ export class TxHandler {
     delete this.callbacks[id];
   }
 
-  public submitTransaction(id: string, input: TransactionData): Promise<void> {
+  public submitTransaction(id: string, input: TransactionInput): Promise<void> {
     if (this.state.transactions.get(id)) {
       throw new Error("transaction with this ID already exists");
     }
@@ -93,12 +98,17 @@ export class TxHandler {
 
   private async handleTransaction(
     key: string,
-    input: Transaction
+    input: TransactionInput
   ): Promise<void> {
-    input.status = "signature";
-
     this.updateState({
-      transactions: this.state.transactions.set(key, TxRecord(input)),
+      transactions: this.state.transactions.set(
+        key,
+        TxRecord({
+          status: "signature",
+          link: input.link,
+          meta: input.meta,
+        })
+      ),
       statuses: this.state.statuses.updateIn(["signature"], (set) =>
         set.add(key)
       ),
@@ -112,7 +122,9 @@ export class TxHandler {
       tx = await input.tx!;
       // remove from unsubmitted and add to pending
       this.updateState({
-        transactions: this.state.transactions.setIn([key, "status"], "pending"),
+        transactions: this.state.transactions
+          .setIn([key, "status"], "pending")
+          .setIn([key, "tx"], tx),
         statuses: this.state.statuses
           .updateIn(["signature"], (set) => set.delete(key))
           .updateIn(["pending"], (set) => set.add(key)),
@@ -169,15 +181,16 @@ export class TxHandler {
     }
   }
 
-  private onStateChange(state: State): void {
+  private onStateChange(state: State, previousState: State): void {
     for (const callback in this.callbacks) {
-      this.callbacks[callback](state);
+      this.callbacks[callback](state, previousState);
     }
   }
 
   private updateState(state: State): void {
+    const previousState = this.state;
     this.state = state;
-    this.onStateChange(state);
+    this.onStateChange(state, previousState);
   }
 }
 

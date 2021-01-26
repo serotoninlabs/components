@@ -11,7 +11,7 @@ import { ThemeProvider, Themes } from "../themes";
 export type SerotoninProviderProps = {
   initializeAnalytics(): Promise<AppAnalytics>;
   themes?: Themes;
-} & EthereumProviderProps;
+} & Omit<EthereumProviderProps, "handler">;
 
 export const SerotoninProvider: React.FC<SerotoninProviderProps> = ({
   children,

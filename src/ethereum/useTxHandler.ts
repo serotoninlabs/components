@@ -1,32 +1,31 @@
 import { ethers } from "ethers";
 import { useContext, useEffect, useState } from "react";
-import { Transaction, TxHandlerContext, TxStatus } from "./TxHandler";
+import {
+  TransactionInput,
+  TransactionData,
+  TxHandlerContext,
+  TxStatus,
+} from "./TxHandler";
 
 export interface TxHandlerOutput {
-  submit(id: string, input: Transaction): Promise<void>;
+  submit(id: string, input: TransactionInput): Promise<void>;
   clear(id: string): void;
-  tx?: Transaction;
+  tx?: TransactionData;
   status: TxStatus;
 }
 
 export function useTxHandler(id: string): TxHandlerOutput {
   const service = useContext(TxHandlerContext);
-  const [tx, setTx] = useState<Transaction>();
-  const [error, setError] = useState<string>();
-  const [receipt, setReceipt] = useState<ethers.providers.TransactionReceipt>();
-
+  const [tx, setTx] = useState<TransactionData>();
   useEffect(() => {
     const handle = service.register((nextState) => {
       console.log("state update", nextState);
       const updatedTx = nextState.transactions.get(id);
-      console.log("updatedTx", updatedTx && updatedTx.toJS());
       if (updatedTx) {
-        setTx(updatedTx.toJS());
-        updatedTx.toJS().status!;
+        const txJS = updatedTx.toJS();
+        setTx(txJS);
       } else {
-        setError(undefined);
         setTx(undefined);
-        setReceipt(undefined);
       }
     });
 

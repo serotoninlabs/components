@@ -1,6 +1,6 @@
 import { Meta, Story } from "@storybook/react";
 import { useWeb3React } from "@web3-react/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, PrimaryButton } from "../buttons/Button";
 
 import { SelectWalletModal } from "./SelectWalletModal";
@@ -11,7 +11,14 @@ export default {
 
 export const Wallets = () => {
   const [showModal, setShowModal] = useState(false);
-  const { account } = useWeb3React();
+  const [network, setNetwork] = useState<string>();
+  const { account, library } = useWeb3React();
+
+  useEffect(() => {
+    if (library) {
+      library.getNetwork().then((n) => setNetwork(n.name));
+    }
+  }, [library]);
 
   function onSignature(challenge: string, signature: string, account: string) {
     console.log("signature", { challenge, signature, account });
@@ -23,6 +30,7 @@ export const Wallets = () => {
         select wallet
       </PrimaryButton>
       <div>account: {account}</div>
+      <div>network: {network}</div>
       <SelectWalletModal
         visible={showModal}
         appName="Test"
