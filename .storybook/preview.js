@@ -5,7 +5,10 @@ export const parameters = {
 
 export const decorators = [
   (Story) => (
-    <SerotoninProvider>
+    <SerotoninProvider
+      requiredChainId={4}
+      magicApiKey="pk_test_EA065FCFB2F28E01"
+    >
       <Story />
     </SerotoninProvider>
   ),

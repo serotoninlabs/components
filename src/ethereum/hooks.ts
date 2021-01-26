@@ -1,42 +1,59 @@
 import { useState, useEffect, useContext } from "react";
 import { useWeb3React } from "@web3-react/core";
 
-import { injectedFactory } from "../ethereum/connectors";
+import { injectedFactory, magicFactory } from "../ethereum/connectors";
 import { BigNumber } from "ethers";
 import { EthereumContext } from "./EthereumContext";
 
 export function useEagerConnect() {
-  const { requiredChainId } = useContext(EthereumContext);
+  const { requiredChainId, magicApiKey } = useContext(EthereumContext);
   const { activate, active } = useWeb3React();
 
   const [tried, setTried] = useState(false);
 
   useEffect(() => {
     async function tryInjected() {
-      const injected = await injectedFactory(requiredChainId);
-      // @ts-ignore AbstractConnector doesn't have this method but injected does, this should be fixed
-      const isAuthorized: boolean = await injected.isAuthorized();
-      if (isAuthorized) {
-        let injectedChainId = await injected.getChainId();
-        if (
-          typeof injectedChainId === "string" &&
-          injectedChainId.startsWith("0x")
-        ) {
-          injectedChainId = BigNumber.from(injectedChainId).toNumber();
-        }
+      const walletChoice = localStorage.getItem("WALLET_CHOICE");
+      if (!walletChoice) {
+        setTried(true);
+        return;
+      }
 
-        if (injectedChainId === requiredChainId) {
-          activate(injected, undefined, true).catch(() => {
+      switch (walletChoice) {
+        case "metamask":
+          const injected = await injectedFactory(requiredChainId);
+          // @ts-ignore AbstractConnector doesn't have this method but injected does, this should be fixed
+          const isAuthorized: boolean = await injected.isAuthorized();
+          if (isAuthorized) {
+            let injectedChainId = await injected.getChainId();
+            if (
+              typeof injectedChainId === "string" &&
+              injectedChainId.startsWith("0x")
+            ) {
+              injectedChainId = BigNumber.from(injectedChainId).toNumber();
+            }
+
+            if (injectedChainId === requiredChainId) {
+              activate(injected, undefined, true).catch(() => {
+                setTried(true);
+              });
+            } else {
+              console.log(
+                "detected an injected web3, but it is on the wrong network",
+                { injectedChainId, requiredChainId: requiredChainId }
+              );
+            }
+          }
+        case "magic":
+          const email = localStorage.getItem("MAGIC_EMAIL");
+          const magic = await magicFactory(
+            magicApiKey,
+            requiredChainId,
+            email!
+          );
+          activate(magic, undefined, true).catch(() => {
             setTried(true);
           });
-        } else {
-          console.log(
-            "detected an injected web3, but it is on the wrong network",
-            { injectedChainId, requiredChainId: requiredChainId }
-          );
-        }
-      } else {
-        setTried(true);
       }
     }
 

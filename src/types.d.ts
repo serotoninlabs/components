@@ -2,6 +2,10 @@ declare module "*.gif" {
   const content: any;
   export default content;
 }
+declare module "*.svg" {
+  const content: any;
+  export default content;
+}
 
 // @types/react-tag-autocomplete is wrong (handleAddition vs onAddition)
 // https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react-tag-autocomplete/index.d.ts

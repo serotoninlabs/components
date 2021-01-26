@@ -25,16 +25,16 @@ export async function networkFactory(
   });
 }
 
-// export async function magicFactory(
-//   apiKey: string,
-//   requiredChainId: number,
-//   email: string
-// ): Promise<AbstractConnector> {
-//   const MagicConnectorModule = await import("@web3-react/magic-connector");
+export async function magicFactory(
+  apiKey: string,
+  requiredChainId: number,
+  email: string
+): Promise<AbstractConnector> {
+  const MagicConnectorModule = await import("@web3-react/magic-connector");
 
-//   return new MagicConnectorModule.MagicConnector({
-//     apiKey,
-//     chainId: requiredChainId,
-//     email,
-//   });
-// }
+  return new MagicConnectorModule.MagicConnector({
+    apiKey,
+    chainId: requiredChainId,
+    email,
+  });
+}

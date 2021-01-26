@@ -1,6 +1,6 @@
 {
   "name": "@serotonin/components",
-  "version": "0.0.37",
+  "version": "0.0.39",
   "description": "",
   "main": "dist/node/index.js",
   "module": "dist/module/index.js",
@@ -20,6 +20,7 @@
     "@web3-react/abstract-connector": "^6.0.7",
     "@web3-react/core": "^6.1.1",
     "@web3-react/injected-connector": "^6.0.7",
+    "@web3-react/magic-connector": "^6.1.6",
     "@web3-react/types": "^6.0.7",
     "chroma-js": "^2.1.0",
     "ethers": "^5.0.24",
@@ -58,6 +59,7 @@
     "rollup": "^2.35.1",
     "rollup-plugin-img": "^1.1.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-svg": "^2.0.0",
     "rollup-plugin-typescript2": "^0.29.0",
     "storybook": "^6.1.11",
     "tslib": "^2.0.3",

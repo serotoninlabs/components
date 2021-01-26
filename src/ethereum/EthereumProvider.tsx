@@ -17,16 +17,20 @@ export interface EthereumProviderProps {
   handler: TxHandler;
   requiredChainId: number;
   rpcUrl: string;
+  magicApiKey: string;
 }
 export const EthereumProvider: React.FC<EthereumProviderProps> = ({
   children,
   handler,
   requiredChainId,
   rpcUrl,
+  magicApiKey,
 }) => {
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
-      <EthereumContext.Provider value={{ requiredChainId, rpcUrl }}>
+      <EthereumContext.Provider
+        value={{ requiredChainId, rpcUrl, magicApiKey }}
+      >
         <TxHandlerContext.Provider value={handler}>
           <ConnectionHandler>{children}</ConnectionHandler>
         </TxHandlerContext.Provider>
