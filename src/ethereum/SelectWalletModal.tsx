@@ -200,7 +200,7 @@ export const SelectWalletModal: React.FC<SelectWalletProps & ModalProps> = (
   props
 ) => {
   return (
-    <Modal visible={props.visible}>
+    <Modal visible={props.visible} onOuterClicked={props.onOuterClicked}>
       <SelectWallet {...props} />
     </Modal>
   );

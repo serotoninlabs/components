@@ -2,7 +2,6 @@ import image from "@rollup/plugin-image";
 import commonjs from "@rollup/plugin-commonjs";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import typescript from "rollup-plugin-typescript2";
-import svg from "rollup-plugin-svg";
 
 export default {
   //input: ["src/index.ts", "src/cards/index.ts", "src/ethereum/index.ts"],
@@ -26,5 +25,5 @@ export default {
     },
   ],
   external: ["react", "styled-components"],
-  plugins: [nodeResolve(), commonjs(), typescript(), image(), svg()],
+  plugins: [nodeResolve(), commonjs(), typescript(), image()],
 };

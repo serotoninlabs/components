@@ -42,7 +42,7 @@ export const MainContentContainer = styled(Section)`
   > div {
     @media (max-width: 768px) {
       width: 100%;
-      margin: 0 20px;
+      margin: 0 12px 0 10px;
       min-height: ${px2vw(200, 768)};
       height: 100%;
     }

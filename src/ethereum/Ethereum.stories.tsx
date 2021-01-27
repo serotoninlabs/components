@@ -35,6 +35,7 @@ export const Wallets = () => {
         visible={showModal}
         appName="Test"
         onSignature={onSignature}
+        onOuterClicked={() => setShowModal(false)}
       />
     </div>
   );
