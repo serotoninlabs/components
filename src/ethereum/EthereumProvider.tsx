@@ -49,9 +49,10 @@ export const ConnectionHandler: React.FC = ({ children }) => {
   useEffect(() => {
     async function tryactivate() {
       if (tried && !active) {
+        console.log("activating network web3");
         const network = await networkFactory(requiredChainId, rpcUrl);
         activate(network, () => {
-          console.log("network error yo", network);
+          console.log("network error", network);
         });
       }
     }

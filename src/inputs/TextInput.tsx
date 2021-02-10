@@ -6,16 +6,25 @@ import { InputError } from "./InputError";
 
 export type TextInputProps = BaseInputProps;
 export const TextInput: React.FunctionComponent<TextInputProps> = (props) => {
-  const { children, label, inputRef, name, placeholder } = props;
+  const {
+    children,
+    label,
+    inputRef,
+    name,
+    placeholder,
+    className,
+    disabled,
+  } = props;
 
   return (
-    <InputContainer>
+    <InputContainer className={className}>
       <InputLabel>{label}</InputLabel>
       <BaseInput
         name={name}
         ref={inputRef}
         autoComplete="off"
         placeholder={placeholder}
+        disabled={disabled}
       >
         {children}
       </BaseInput>

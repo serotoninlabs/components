@@ -14,6 +14,11 @@ import { InputContainer, InputLabel, TextInput } from "../inputs";
 import MagicLogo from "./wallets/magic.svg";
 import MetaMaskLogo from "./wallets/metamask.svg";
 
+const chainIdToNetwork: { [chainId: number]: string } = {
+  1: "Mainnet",
+  4: "Rinkeby",
+};
+
 const WalletChoices = styled(Row)`
   > * {
     margin: 5px;
@@ -56,7 +61,7 @@ const SelectWallet: React.FC<SelectWalletProps> = ({
   const [connector, setConnector] = useState<AbstractConnector>();
   const { requiredChainId, magicApiKey } = useContext(EthereumContext);
   const ctx = useWeb3React();
-  const { account, activate, error, library } = ctx;
+  const { account, activate, error: web3Error, library } = ctx;
 
   useEffect(() => {
     if (connectorChoice && connectorChoice === "metamask") {
@@ -69,12 +74,18 @@ const SelectWallet: React.FC<SelectWalletProps> = ({
     if (connectorChoice && library && connector === ctx.connector) {
       web3Login();
     }
-  }, [library, connector]);
+  }, [library, connector, web3Error]);
 
   async function metamask() {
     const injected = await injectedFactory(requiredChainId);
-    await activate(injected);
-    setConnector(injected);
+    console.log({ injected });
+    try {
+      await activate(injected);
+      setConnector(injected);
+    } catch (err) {
+      console.log("err", err);
+    }
+
     localStorage.setItem("WALLET_CHOICE", "metamask");
   }
 
@@ -99,6 +110,18 @@ const SelectWallet: React.FC<SelectWalletProps> = ({
     console.log("sig success", challenge, signature, account);
     onSignature(challenge, signature, account);
     setLoading(false);
+  }
+
+  if (web3Error) {
+    const errorType = web3Error.name;
+
+    if (web3Error.name === "UnsupportedChainIdError") {
+      return (
+        <div>Please set your wallet to {chainIdToNetwork[requiredChainId]}</div>
+      );
+    }
+
+    return <div>error: {JSON.stringify(web3Error)}</div>;
   }
 
   switch (connectorChoice) {

@@ -11,6 +11,8 @@ export type BaseInputProps = {
   helperText?: string | React.ReactElement;
   error?: FieldError;
   inputRef?: any;
+  className?: string;
+  disabled?: boolean;
 };
 
 export const BaseInput = styled.input`
