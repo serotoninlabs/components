@@ -1,7 +1,7 @@
 import React, { MouseEvent, useRef } from "react";
 import styled from "styled-components";
 import { InputLabel } from "./Base";
-import { PrimaryButton, ButtonProps } from "../buttons/Button";
+import { InvertedButton, ButtonProps } from "../buttons/Button";
 
 export interface OvalImageProps {
   height?: number;
@@ -34,6 +34,9 @@ export const RadioButtonDiv = styled.div`
   label + input {
     color: red;
     background-color: blue;
+  }
+  ${InvertedButton} {
+    margin: 0 5px;
   }
 `;
 
@@ -76,9 +79,9 @@ export const RadioButton: React.FunctionComponent<RadioButtonProps> = (
             input.current = ref;
           }}
         />
-        <PrimaryButton onClick={clickHandler} disabled={props.disabled}>
+        <InvertedButton onClick={clickHandler} disabled={props.disabled}>
           {children}
-        </PrimaryButton>
+        </InvertedButton>
       </label>
     </RadioButtonDiv>
   );
@@ -178,7 +181,7 @@ export const RadioOption: React.FunctionComponent<RadioOptionProps> = (
   const { onChange, children, name, inputRef } = props;
   const defaultChecked = props.defaultValue === props.value;
 
-  let Component: RadioButtonProps["as"] = PrimaryButton;
+  let Component: RadioButtonProps["as"] = InvertedButton;
   if (props.as) {
     Component = props.as;
   }
