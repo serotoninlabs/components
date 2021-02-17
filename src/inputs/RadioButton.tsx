@@ -79,7 +79,11 @@ export const RadioButton: React.FunctionComponent<RadioButtonProps> = (
             input.current = ref;
           }}
         />
-        <InvertedButton onClick={clickHandler} disabled={props.disabled}>
+        <InvertedButton
+          onClick={clickHandler}
+          disabled={props.disabled}
+          data-checked={input.current?.checked}
+        >
           {children}
         </InvertedButton>
       </label>

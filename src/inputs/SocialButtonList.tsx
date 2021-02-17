@@ -46,6 +46,22 @@ export const StyledRadioInput = styled(RadioInput)`
   }
 `;
 
+export const options: Array<{ value: Social.Providers; icon: React.FC }> = [
+  { value: "facebook", icon: Social.FacebookIcon },
+  { value: "email", icon: Social.EmailIcon },
+  { value: "instagram", icon: Social.InstagramIcon },
+  { value: "podcast", icon: Social.PodcastIcon },
+  { value: "tiktok", icon: Social.TiktokIcon },
+  { value: "twitter", icon: Social.TwitterIcon },
+  { value: "twitch", icon: Social.TwitchIcon },
+  { value: "website", icon: Social.WebsiteIcon },
+  { value: "youtube", icon: Social.YoutubeIcon },
+];
+
+export function buildDefaultValues(choices: Social.Providers[]) {
+  return options.map((o) => (choices.indexOf(o.value) > -1 ? o.value : false));
+}
+
 export interface SocialButtonListProps {
   name: string;
   inputRef?: any;
@@ -56,30 +72,14 @@ export const SocialButtonList: React.FC<SocialButtonListProps> = ({
 }) => {
   return (
     <StyledRadioInput name={name} inputRef={inputRef}>
-      <RadioOption value="facebook">
-        <Social.FacebookIcon />
-      </RadioOption>
-      <RadioOption value="github">
-        <Social.GithubIcon />
-      </RadioOption>
-      <RadioOption value="instagram">
-        <Social.InstagramIcon />
-      </RadioOption>
-      <RadioOption value="tiktok">
-        <Social.TiktokIcon />
-      </RadioOption>
-      <RadioOption value="twitter">
-        <Social.TwitterIcon />
-      </RadioOption>
-      <RadioOption value="twitch">
-        <Social.TwitchIcon />
-      </RadioOption>
-      <RadioOption value="website">
-        <Social.WebsiteIcon />
-      </RadioOption>
-      <RadioOption value="youtube">
-        <Social.YoutubeIcon />
-      </RadioOption>
+      {options.map((option) => {
+        const Icon = option.icon;
+        return (
+          <RadioOption key={option.value} value={option.value}>
+            <Icon />
+          </RadioOption>
+        );
+      })}
     </StyledRadioInput>
   );
 };

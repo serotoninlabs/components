@@ -162,6 +162,11 @@ function buttonCSS(button: ButtonStyleStates) {
     background-color: ${button.disabled.background};
     border: ${button.disabled.border};
   }
+  &[data-checked="true"] {
+    color: ${button.active.text};
+    background-color: ${button.active.background};
+    border: ${button.active.border};
+  }
   `;
 }
 
