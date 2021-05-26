@@ -8,6 +8,7 @@ export default {
 } as Meta;
 
 const Container = styled.div`
+  color: ${(props) => props.theme.colors?.primary?.text || "inherit"};
   > div {
     &:first-child {
       font-weight: bold;
