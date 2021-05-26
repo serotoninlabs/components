@@ -7,4 +7,5 @@ export * from "./TempNetworkConnector";
 export * from "./TxHandler";
 export * from "./useTxHandler";
 export * from "./SelectWalletModal";
+export * from "./TruncatedEthAddress";
 export { useWeb3React } from "@web3-react/core";
