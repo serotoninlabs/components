@@ -2,6 +2,7 @@ import { ThemeProvider } from "styled-components";
 import { SerotoninProvider } from "../src/provider/SerotoninProvider";
 import { defaultTheme } from "../src/themes/default";
 import { darkTheme } from "../src/themes/dark";
+import { cobainTheme } from "../src/themes/cobain";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

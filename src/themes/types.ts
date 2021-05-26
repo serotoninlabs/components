@@ -17,6 +17,7 @@ export interface ButtonStyleProps {
   border: string;
 }
 export interface ButtonStyleStates {
+  borderRadius?: string;
   base: ButtonStyleProps;
   disabled: ButtonStyleProps;
   hover: ButtonStyleProps;
