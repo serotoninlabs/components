@@ -73,4 +73,5 @@ export type RecursivePartial<T> = {
     : T[P];
 };
 
+export type Theme = DefaultTheme;
 export type ThemeOverride = RecursivePartial<DefaultTheme>;
