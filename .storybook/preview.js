@@ -3,6 +3,7 @@ import { SerotoninProvider } from "../src/provider/SerotoninProvider";
 import { defaultTheme } from "../src/themes/default";
 import { darkTheme } from "../src/themes/dark";
 import { cobainTheme } from "../src/themes/cobain";
+import { hotWheelsTheme } from "../src/themes/hotWheels";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -20,6 +21,7 @@ export const globalTypes = {
         { value: defaultTheme, title: "Default" },
         { value: darkTheme, title: "Dark" },
         { value: cobainTheme, title: "Cobain" },
+        { value: hotWheelsTheme, title: "Hot Wheels" },
       ],
     },
   },

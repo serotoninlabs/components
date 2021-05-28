@@ -1,7 +1,7 @@
 import { ThemeOverride } from "./types";
 import { extendTheme } from "./extendTheme";
 
-export const hotWheels = extendTheme({
+export const hotWheelsTheme = extendTheme({
   backgroundColor: "#3F3F3F",
   colors: {
     primary: {

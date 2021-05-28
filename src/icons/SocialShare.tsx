@@ -34,19 +34,10 @@ const SocialCont = styled.div<{ fillColor: string }>`
     }
 
     svg {
-      fill: ${(props) => props.fillColor};
+      fill: ${(props) => props.fillColor ? props.fillColor : props.theme.buttons.primary.base.text};
     }
   }
 `;
-
-// @TODO(nembokid): make it type safe?
-// type Platforms =
-//   | "facebook"
-//   | "email"
-//   | "instagram"
-//   | "twitter"
-//   | "whatsapp"
-//   | "telegram";
 
 interface SocialProps {
   title?: string;
