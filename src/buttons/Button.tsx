@@ -108,7 +108,6 @@ export const Button = styled(Base)`
   font-family: ${(props) => props.theme.fonts.sansSerif};
   cursor: pointer;
   outline: none;
-  border-radius: 50px;
   text-decoration: none;
   color: inherit;
   font-size: 1em;
@@ -140,6 +139,7 @@ function buttonCSS(button: ButtonStyleStates) {
   return `
   background-color: ${button.base.background};
   color: ${button.base.text};
+  border-radius: ${button.borderRadius || "50px"};
   border: ${button.base.border};
   outline: none;
   :focus {
@@ -158,6 +158,7 @@ function buttonCSS(button: ButtonStyleStates) {
     border: ${button.active.border};
   }
   &:disabled {
+    cursor: default;
     color: ${button.disabled.text};
     background-color: ${button.disabled.background};
     border: ${button.disabled.border};
