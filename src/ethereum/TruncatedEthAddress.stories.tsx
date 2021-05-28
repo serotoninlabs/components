@@ -3,4 +3,6 @@ import { TruncatedEthAddress } from "./TruncatedEthAddress";
 
 export default { title: "Atoms/Eth Address" } as Meta;
 
-export const tokenHistory = () => <TruncatedEthAddress address="0xabc123" />;
+export const truncatedEthAddress = () => (
+  <TruncatedEthAddress address="0xabc123" />
+);

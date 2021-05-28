@@ -14,6 +14,7 @@ const StyledA = styled.a`
 interface TruncatedEthAddressProps {
   address: string;
 }
+
 export const TruncatedEthAddress: React.FC<TruncatedEthAddressProps> = ({
   address,
 }) =>
