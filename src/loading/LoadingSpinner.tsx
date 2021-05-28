@@ -11,18 +11,23 @@ const StyledLoadingSpinner = styled.div`
   top: 0;
 `;
 
-export const StyledSpinner = styled.div<{color: string;}>`
+export const StyledSpinner = styled.div<{ fillColor?: string }>`
   text-align: center;
   font-size: 1em;
   circle {
-    stroke: ${(props) => props.color};
+    stroke: ${(props) =>
+      props.fillColor
+        ? props.fillColor
+        : props.theme?.buttons?.primary?.base?.text};
   }
 `;
 
-export const LoadingSpinner: React.FC<{color: string;}> = ({color}) => {
+export const LoadingSpinner: React.FC<{ fillColor?: string }> = ({
+  fillColor,
+}) => {
   return (
     <StyledLoadingSpinner>
-      <StyledSpinner color={color}>
+      <StyledSpinner fillColor={fillColor}>
         <CircularProgress />
       </StyledSpinner>
     </StyledLoadingSpinner>
