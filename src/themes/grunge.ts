@@ -1,7 +1,7 @@
 import { ThemeOverride } from "./types";
 import { extendTheme } from "./extendTheme";
 
-export const cobainTheme = extendTheme({
+export const grungeTheme = extendTheme({
   backgroundColor: "black",
   colors: {
     primary: {
@@ -91,6 +91,39 @@ export const cobainTheme = extendTheme({
         background: "transparent",
         border: "4px solid #ffffff55",
         text: "#ffffff55",
+      },
+    },
+    gradient: {
+      borderRadius: "4px",
+      base: {
+        backgroundImage: "linear-gradient(#eebc0f, #eebc0f)",
+        background: "#eebc0f",
+        text: "#000",
+        border: "none",
+      },
+      disabled: {
+        backgroundImage: "linear-gradient(rgb(215, 221, 221), rgb(215, 221, 221))",
+        background: "rgb(215, 221, 221)",
+        text: "#000",
+        border: "none",
+      },
+      hover: {
+        backgroundImage: "none",
+        background: "#eebc0f",
+        text: "#000",
+        border: "none",
+      },
+      active: {
+        backgroundImage: "none",
+        background: "#eebc0f",
+        text: "#000",
+        border: "none",
+      },
+      focus: {
+        backgroundImage: "none",
+        background: "#eebc0f",
+        text: "#000",
+        border: "none",
       },
     },
   },

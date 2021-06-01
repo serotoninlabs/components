@@ -1,1 +1,1 @@
-import * from "./LoadingSpinner";
+export * from "./LoadingSpinner";

@@ -18,7 +18,7 @@ export const StyledSpinner = styled.div<{ fillColor?: string }>`
     stroke: ${(props) =>
       props.fillColor
         ? props.fillColor
-        : props.theme?.buttons?.primary?.base?.text};
+        : props.theme.buttons.primary.base.text};
   }
 `;
 

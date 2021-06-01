@@ -90,6 +90,38 @@ export const defaultTheme: DefaultTheme = {
         border: "1px solid #000",
       },
     },
+    gradient: {
+      base: {
+        backgroundImage: "#000",
+        background: "none",
+        text: "#fff",
+        border: "1px solid #000",
+      },
+      disabled: {
+        backgroundImage: "#0007",
+        background: "none",
+        text: "#fff",
+        border: "1px solid #0007",
+      },
+      hover: {
+        backgroundImage: "#000",
+        background: "none",
+        text: "#fff",
+        border: "1px solid #000",
+      },
+      active: {
+        backgroundImage: "#000",
+        background: "none",
+        text: "#fff",
+        border: "1px solid #000",
+      },
+      focus: {
+        backgroundImage: "#000",
+        background: "none",
+        text: "#fff",
+        border: "1px solid #000",
+      },
+    },
   },
   containers: {
     highlight: {

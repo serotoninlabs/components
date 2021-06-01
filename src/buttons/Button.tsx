@@ -51,6 +51,7 @@ export const circleSize: { [index: string]: string } = {
 
 export type ButtonProps = {
   size?: buttonSizes;
+  gradient?: string;
   className?: string;
   disabled?: boolean;
   href?: string;
@@ -111,6 +112,7 @@ export const Button = styled(Base)`
   text-decoration: none;
   color: inherit;
   font-size: 1em;
+  background-image: ${(props) => props.gradient || "none"};
 
   padding: ${(props: any) => paddingObject[props.size || buttonSizes.MEDIUM]};
   letter-spacing: ${(props: any) =>
@@ -180,6 +182,12 @@ export const InvertedButton = styled(Button)`
 
 export const SecondaryButton = styled(Button)`
   ${(props) => buttonCSS(props.theme.buttons.secondary)}
+`;
+
+export const GradientButton = styled(Button)`
+  background-image: ${(props) => props.theme.buttons.gradient.base.backgroundImage};
+  border-radius: ${(props) => props.theme.buttons.gradient.borderRadius};
+  color: ${(props) => props.theme.buttons.gradient.base.text};
 `;
 
 export const CircleButton = styled(Button)`

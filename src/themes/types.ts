@@ -15,6 +15,7 @@ export interface ButtonStyleProps {
   background: string;
   text: string;
   border: string;
+  backgroundImage?: string;
 }
 export interface ButtonStyleStates {
   borderRadius?: string;
@@ -36,6 +37,7 @@ declare module "styled-components" {
       primary: ButtonStyleStates;
       secondary: ButtonStyleStates;
       inverted: ButtonStyleStates;
+      gradient: ButtonStyleStates;
     };
     containers: {
       highlight: IPalette;

@@ -8,7 +8,7 @@ export * from "./icons";
 export * from "./inputs";
 export * from "./fun/PartyWizard";
 export * from "./GlobalStyle";
-export * from "./loading/Loading";
+export * from "./loading";
 export * from "./meta/Meta";
 export * from "./provider/SerotoninProvider";
 export * from "./text";
