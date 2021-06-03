@@ -8,7 +8,7 @@
   "scripts": {
     "build": "rm -rf dist && rollup -c",
     "watch": "rollup -cw",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -s ./public -p 6006",
     "build-storybook": "build-storybook",
     "publish": "npm publish"
   },

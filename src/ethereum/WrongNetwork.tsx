@@ -16,21 +16,21 @@ const Image = styled.img<{height: string;}>`
 `;
 
 interface WrongNetworkProps {
-  title: string; 
-  text: string; 
-  src: string; 
+  title?: string; 
+  text?: string; 
+  src?: string; 
   imgHeight?: number;
 }
 
 export const WrongNetwork: React.FC<WrongNetworkProps> = ({title, text, src, imgHeight}) => {
   return (
     <Wrapper>
-      <h1>{title}</h1>
+      <h1>{title || "Oops, wrong network"}</h1>
       <p>
-        {text}
+        {text || "Just open your connected wallet and change to the Main Ethereum Network"}
       </p>
       <div>
-        <Image src={src} height={imgHeight?.toString() || "300"} />
+        <Image src={src || "/img/change_network.png"} height={imgHeight?.toString() || "300"} />
       </div>
     </Wrapper>
   );

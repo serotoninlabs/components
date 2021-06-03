@@ -94,15 +94,15 @@ export const AllButtons = (args) => {
         </div>
       </div>
       <div>
-        <div>Gradient</div>
+        <div>Tertiary</div>
         <div>
-          <Buttons.GradientButton>{args.label}</Buttons.GradientButton>
+          <Buttons.TertiaryButton>{args.label}</Buttons.TertiaryButton>
         </div>
         <div>
-          <Buttons.GradientButton href="https://google.com">{args.label}</Buttons.GradientButton>
+          <Buttons.TertiaryButton href="https://google.com">{args.label}</Buttons.TertiaryButton>
         </div>
         <div>
-          <Buttons.GradientButton disabled>{args.label}</Buttons.GradientButton>
+          <Buttons.TertiaryButton disabled>{args.label}</Buttons.TertiaryButton>
         </div>
       </div>
       <div>

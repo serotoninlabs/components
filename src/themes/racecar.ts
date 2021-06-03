@@ -1,11 +1,11 @@
-import { ThemeOverride } from "./types";
 import { extendTheme } from "./extendTheme";
 
 export const racecarTheme = extendTheme({
-  backgroundColor: "#3F3F3F",
+  backgroundColor: "#000",
   colors: {
     primary: {
       text: "#009ADA",
+      gradient: ["#7D17FF 34.44%", "#250745 126.01%"],
     },
     secondary: {
       text: "#FED103"
@@ -13,7 +13,13 @@ export const racecarTheme = extendTheme({
     common: {
       white: "#fff",
       black: "#000"
-    }
+    },
+    inputs: {
+      background: "transparent",
+      label: "#000",
+      border: "2px solid #009ADA",
+      borderRadius: "0",
+    },
   },
   buttons: {
     primary: {
@@ -47,28 +53,28 @@ export const racecarTheme = extendTheme({
     secondary: {
       borderRadius: "0",
       base: {
-        background: "transparent",
-        border: "3px solid #FED103",
+        background: "#009ADA",
+        border: "none",
         text: "white",
       },
       hover: {
-        background: "transparent",
-        border: "3px solid #FED103",
+        background: "#009ADA",
+        border: "none",
         text: "white",
       },
       active: {
-        background: "transparent",
-        border: "3px solid #FED103",
+        background: "#009ADA",
+        border: "none",
         text: "white",
       },
       focus: {
-        background: "transparent",
-        border: "3px solid #FED103",
+        background: "#009ADA",
+        border: "none",
         text: "white",
       },
       disabled: {
-        background: "transparent",
-        border: "3px solid rgba(24, 226, 172, 0.33)",
+        background: "#0007",
+        border: "3px solid #fff",
         text: "#fff55",
       },
     },
@@ -76,22 +82,22 @@ export const racecarTheme = extendTheme({
       borderRadius: "0",
       base: {
         background: "transparent",
-        border: "3px solid white",
+        border: "2px solid white",
         text: "white",
       },
       hover: {
         background: "transparent",
-        border: "3px solid white",
+        border: "2px solid white",
         text: "white",
       },
       active: {
         background: "transparent",
-        border: "3px solid white",
+        border: "2px solid white",
         text: "white",
       },
       focus: {
         background: "transparent",
-        border: "3px solid white",
+        border: "2px solid white",
         text: "white",
       },
       disabled: {
@@ -100,34 +106,29 @@ export const racecarTheme = extendTheme({
         text: "#fff55",
       },
     },
-    gradient: {
+    tertiary: {
       borderRadius: "10px",
       base: {
-        backgroundImage: "linear-gradient(155.28deg, rgba(131, 51, 244, 0.89) 34.44%, #35105B 126.01%)",
-        background: "none",
+        background: "linear-gradient(155.28deg, #7D17FF 34.44%, #250745 126.01%)",
         border: "none",
         text: "white",
       },
       hover: {
-        backgroundImage: "linear-gradient(155.28deg, rgba(131, 51, 244, 0.89) 34.44%, #35105B 126.01%)",
-        background: "none",
+        background: "linear-gradient(155.28deg, #7D17FF 34.44%, #250745 126.01%)",
         border: "none",
         text: "white",
       },
       active: {
-        backgroundImage: "linear-gradient(155.28deg, rgba(131, 51, 244, 0.89) 34.44%, #35105B 126.01%)",
-        background: "none",
+        background: "linear-gradient(155.28deg, #7D17FF 34.44%, #250745 126.01%)",
         border: "none",
         text: "white",
       },
       focus: {
-        backgroundImage: "linear-gradient(155.28deg, rgba(131, 51, 244, 0.89) 34.44%, #35105B 126.01%)",
-        background: "none",
+        background: "linear-gradient(155.28deg, #7D17FF 34.44%, #250745 126.01%)",
         border: "none",
         text: "white",
       },
       disabled: {
-        backgroundImage: "transparent",
         background: "#0007",
         border: "3px solid #fff55",
         text: "#fff55",

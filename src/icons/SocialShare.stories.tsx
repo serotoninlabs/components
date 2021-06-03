@@ -9,9 +9,7 @@ const socialList = ["twitter", "facebook", "email", "whatsapp"];
 
 export const socialShare = () => (
   <SocialShare
-    title="share"
     socials={socialList}
     msg={defaultMsg}
-    fillColor="#fff"
   />
 );

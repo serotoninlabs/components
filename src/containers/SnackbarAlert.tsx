@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export const SnackbarAlert: React.FC<{ msg: string }> = ({ msg }) => {
+export const SnackbarAlert: React.FC = ({children}) => {
   const [open, setOpen] = useState(true);
   const classes = useStyles();
 
@@ -38,7 +38,7 @@ export const SnackbarAlert: React.FC<{ msg: string }> = ({ msg }) => {
         autoHideDuration={4000}
       >
         <Alert onClose={handleClose} severity="success">
-          {msg}
+          {children}
         </Alert>
       </Snackbar>
     </div>

@@ -93,34 +93,29 @@ export const grungeTheme = extendTheme({
         text: "#ffffff55",
       },
     },
-    gradient: {
+    tertiary: {
       borderRadius: "4px",
       base: {
-        backgroundImage: "linear-gradient(#eebc0f, #eebc0f)",
         background: "#eebc0f",
         text: "#000",
         border: "none",
       },
       disabled: {
-        backgroundImage: "linear-gradient(rgb(215, 221, 221), rgb(215, 221, 221))",
         background: "rgb(215, 221, 221)",
         text: "#000",
         border: "none",
       },
       hover: {
-        backgroundImage: "none",
         background: "#eebc0f",
         text: "#000",
         border: "none",
       },
       active: {
-        backgroundImage: "none",
         background: "#eebc0f",
         text: "#000",
         border: "none",
       },
       focus: {
-        backgroundImage: "none",
         background: "#eebc0f",
         text: "#000",
         border: "none",

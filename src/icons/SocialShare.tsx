@@ -13,7 +13,7 @@ import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import TelegramIcon from "@material-ui/icons/Telegram";
 import FacebookIcon from "@material-ui/icons/Facebook";
 
-const SocialCont = styled.div<{ fillColor: string }>`
+const SocialCont = styled.div<{ fillColor?: string }>`
   width: 100%;
   display: block;
   h4 {
@@ -34,7 +34,7 @@ const SocialCont = styled.div<{ fillColor: string }>`
     }
 
     svg {
-      fill: ${(props) => props.fillColor ? props.fillColor : props.theme.buttons.primary.base.text};
+      fill: ${(props) => props.fillColor || props.theme.colors.primary.text};
     }
   }
 `;
@@ -93,7 +93,7 @@ export const SocialShare: React.FC<SocialProps> = ({
   fillColor,
 }) => {
   return (
-    <SocialCont fillColor={fillColor || "inherit"}>
+    <SocialCont fillColor={fillColor}>
       {title && <h4>{title}</h4>}
       <ul>
         {socials.map((row, idx) => {

@@ -5,6 +5,8 @@ import { media } from "../utils/media";
 
 interface ModalProps {
   onCloseClicked(): void;
+  closeColor?: string;
+  backgroundColor?: string;
 }
 
 const ModalOuter = styled.div`
@@ -18,7 +20,7 @@ const ModalOuter = styled.div`
   z-index: 100;
 `;
 
-const StyledCloseModal = styled.div`
+const StyledCloseModal = styled.div<{closeColor?: string;}>`
   position: absolute;
   top: 0;
   left: 0;
@@ -29,21 +31,17 @@ const StyledCloseModal = styled.div`
   svg {
     margin: 10px;
     cursor: pointer;
-    fill: #ccc;
-
-    &:hover {
-      fill: #fff;
-    }
+    fill: ${(props) => props.closeColor || props.theme.colors.secondary.text};
   }
 `;
 
-const ModalInner = styled.div`
+const ModalInner = styled.div<{backgroundColor?: string;}>`
   display: block;
   width: 70%;
   height: 90%;
   margin: 2.5% auto;
   position: relative;
-  background-color: rgb(23, 23, 23);
+  background-color: ${(props) => props.backgroundColor || props.theme.backgroundColor};
   filter: brightness(1);
   padding-bottom: 1em;
   overflow-y: auto;
@@ -74,12 +72,12 @@ const ModalInner = styled.div`
   }
 `;
 
-export const BasicModal: React.FC<ModalProps> = ({ onCloseClicked, children }) => {
+export const AnimatedModal: React.FC<ModalProps> = ({ onCloseClicked, closeColor, backgroundColor, children }) => {
   return (
     <>
       <ModalOuter>
-        <ModalInner>
-          <StyledCloseModal>
+        <ModalInner backgroundColor={backgroundColor}>
+          <StyledCloseModal closeColor={closeColor}>
             <CloseIcon onClick={onCloseClicked} />
           </StyledCloseModal>
           {children}
