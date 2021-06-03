@@ -94,6 +94,18 @@ export const AllButtons = (args) => {
         </div>
       </div>
       <div>
+        <div>Tertiary</div>
+        <div>
+          <Buttons.TertiaryButton>{args.label}</Buttons.TertiaryButton>
+        </div>
+        <div>
+          <Buttons.TertiaryButton href="https://google.com">{args.label}</Buttons.TertiaryButton>
+        </div>
+        <div>
+          <Buttons.TertiaryButton disabled>{args.label}</Buttons.TertiaryButton>
+        </div>
+      </div>
+      <div>
         <div>Action</div>
         <div>
           <Buttons.ActionButton icon={ForwardIcon} />

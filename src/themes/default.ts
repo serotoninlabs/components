@@ -90,6 +90,33 @@ export const defaultTheme: DefaultTheme = {
         border: "1px solid #000",
       },
     },
+    tertiary: {
+      base: {
+        background: "none",
+        text: "#fff",
+        border: "1px solid #000",
+      },
+      disabled: {
+        background: "none",
+        text: "#fff",
+        border: "1px solid #0007",
+      },
+      hover: {
+        background: "none",
+        text: "#fff",
+        border: "1px solid #000",
+      },
+      active: {
+        background: "none",
+        text: "#fff",
+        border: "1px solid #000",
+      },
+      focus: {
+        background: "none",
+        text: "#fff",
+        border: "1px solid #000",
+      },
+    },
   },
   containers: {
     highlight: {

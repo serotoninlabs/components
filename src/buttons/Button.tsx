@@ -51,6 +51,7 @@ export const circleSize: { [index: string]: string } = {
 
 export type ButtonProps = {
   size?: buttonSizes;
+  gradient?: string;
   className?: string;
   disabled?: boolean;
   href?: string;
@@ -111,6 +112,7 @@ export const Button = styled(Base)`
   text-decoration: none;
   color: inherit;
   font-size: 1em;
+  background-image: ${(props) => props.gradient || "none"};
 
   padding: ${(props: any) => paddingObject[props.size || buttonSizes.MEDIUM]};
   letter-spacing: ${(props: any) =>
@@ -137,35 +139,35 @@ export const Button = styled(Base)`
 
 function buttonCSS(button: ButtonStyleStates) {
   return `
-  background-color: ${button.base.background};
+  background: ${button.base.background};
   color: ${button.base.text};
   border-radius: ${button.borderRadius || "50px"};
   border: ${button.base.border};
   outline: none;
   :focus {
     color: ${button.focus.text};
-    background-color: ${button.focus.background};
+    background: ${button.focus.background};
     border: ${button.focus.border};
   }
   &:hover {
     color: ${button.hover.text};
-    background-color: ${button.hover.background};
+    background: ${button.hover.background};
     border: ${button.hover.border};
   }
   &:active {
     color: ${button.active.text};
-    background-color: ${button.active.background};
+    background: ${button.active.background};
     border: ${button.active.border};
   }
   &:disabled {
     cursor: default;
     color: ${button.disabled.text};
-    background-color: ${button.disabled.background};
+    background: ${button.disabled.background};
     border: ${button.disabled.border};
   }
   &[data-checked="true"] {
     color: ${button.active.text};
-    background-color: ${button.active.background};
+    background: ${button.active.background};
     border: ${button.active.border};
   }
   `;
@@ -174,13 +176,24 @@ function buttonCSS(button: ButtonStyleStates) {
 export const PrimaryButton = styled(Button)`
   ${(props) => buttonCSS(props.theme.buttons.primary)}
 `;
-export const InvertedButton = styled(Button)`
-  ${(props) => buttonCSS(props.theme.buttons.inverted)}
-`;
 
 export const SecondaryButton = styled(Button)`
   ${(props) => buttonCSS(props.theme.buttons.secondary)}
 `;
+
+export const InvertedButton = styled(Button)`
+  ${(props) => buttonCSS(props.theme.buttons.inverted)}
+`;
+
+export const TertiaryButton = styled(Button)`
+  ${(props) => buttonCSS(props.theme.buttons.tertiary)}
+`;
+
+// export const GradientButton = styled(Button)`
+//   // background-image: ${(props) => props.theme.buttons.tertiary.base.background};
+//   border-radius: ${(props) => props.theme.buttons.tertiary.borderRadius};
+//   color: ${(props) => props.theme.buttons.tertiary.base.text};
+// `;
 
 export const CircleButton = styled(Button)`
   padding: 0;

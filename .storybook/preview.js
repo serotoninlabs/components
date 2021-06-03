@@ -2,7 +2,8 @@ import { ThemeProvider } from "styled-components";
 import { SerotoninProvider } from "../src/provider/SerotoninProvider";
 import { defaultTheme } from "../src/themes/default";
 import { darkTheme } from "../src/themes/dark";
-import { cobainTheme } from "../src/themes/cobain";
+import { grungeTheme } from "../src/themes/grunge";
+import { racecarTheme } from "../src/themes/racecar";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -19,7 +20,8 @@ export const globalTypes = {
       items: [
         { value: defaultTheme, title: "Default" },
         { value: darkTheme, title: "Dark" },
-        { value: cobainTheme, title: "Cobain" },
+        { value: grungeTheme, title: "Grunge" },
+        { value: racecarTheme, title: "Racecar" },
       ],
     },
   },
