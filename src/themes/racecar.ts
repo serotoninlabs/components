@@ -2,23 +2,41 @@ import { extendTheme } from "./extendTheme";
 
 export const racecarTheme = extendTheme({
   backgroundColor: "#000",
+  fonts: {
+    serif: "Nunito",
+    sansSerif: "Tungsten",
+    mono: "Helvetica Neue",
+  },
   colors: {
     primary: {
       text: "#009ADA",
       gradient: ["#7D17FF 34.44%", "#250745 126.01%"],
     },
     secondary: {
-      text: "#FED103"
+      text: "#FED103",
+      gradient: ["#7D17FF 34.44%", "#250745 126.01%"],
     },
     common: {
       white: "#fff",
       black: "#000"
     },
     inputs: {
-      background: "transparent",
-      label: "#000",
-      border: "2px solid #009ADA",
-      borderRadius: "0",
+      primary: {
+        background: "transparent",
+        label: "#000",
+        border: "2px solid #fff",
+        borderRadius: "0",
+        placeholderColor: "#000",
+        textColor: "#000"
+      },
+      secondary: {
+        background: "#848484",
+        label: "#000",
+        border: "none",
+        borderRadius: "0",
+        placeholderColor: "#000",
+        textColor: "#000"
+      }
     },
   },
   buttons: {
@@ -46,7 +64,7 @@ export const racecarTheme = extendTheme({
       },
       disabled: {
         background: "transparent",
-        border: "3px solid #eebc0f55",
+        border: "3px solid #65636366",
         text: "#fff55",
       },
     },

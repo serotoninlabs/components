@@ -53,10 +53,22 @@ declare module "styled-components" {
       primary: IPalette;
       secondary: IPalette;
       inputs: {
-        background: string;
-        label: string;
-        border: string;
-        borderRadius: string;
+        primary: {
+          background: string;
+          label: string;
+          border: string;
+          borderRadius: string;
+          textColor: string;
+          placeholderColor: string;
+        },
+        secondary: {
+          background: string;
+          label: string;
+          border: string;
+          borderRadius: string;
+          textColor: string;
+          placeholderColor: string;
+        }
       };
       notifications: {
         default: IPalette;

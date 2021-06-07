@@ -7,7 +7,7 @@ const StyledEdition = styled(PrimaryButton)`
   pointer-events: none;
 `;
 
-const StyledBidInfo = styled.div`
+const StyledBidInfo = styled.div<{width?: string;}>`
   display: flex;
   flex-direction: column;
 
@@ -20,7 +20,7 @@ const StyledBidInfo = styled.div`
   }
 
   > div:first-child {
-    width: 80%;
+    width: ${(props) => props.width || "auto"};
   }
 `;
 
@@ -32,6 +32,7 @@ const StyledInfoSection = styled.div<{color?: string;}>`
 
   p:first-child {
     color: ${(props) => props.theme.colors.primary.text};
+    font-weight: 700;
   }
 `;
 
@@ -55,14 +56,17 @@ interface BidInfoProps {
     text: string;
   }>;
   title?: string;
+  name?: string;
+  width?: string; 
 }
 
-export const InfoColumn: React.FC<BidInfoProps> = ({ bidInfo, title }) => {
+export const InfoColumn: React.FC<BidInfoProps> = ({ bidInfo, title, name, width }) => {
   return (
     <>
-      <StyledBidInfo>
+      <StyledBidInfo width={width}>
         <div>
           {title && <StyledEdition>{title}</StyledEdition>}
+          {name && <h1>{name}</h1>}
           {bidInfo.map((section, idx) => (
             <InfoSection section={section} key={idx} />
           ))}

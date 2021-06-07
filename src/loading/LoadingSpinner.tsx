@@ -15,10 +15,7 @@ export const StyledSpinner = styled.div<{ fillColor?: string }>`
   text-align: center;
   font-size: 1em;
   circle {
-    stroke: ${(props) =>
-      props.fillColor
-        ? props.fillColor
-        : props.theme.buttons.primary.base.text};
+    stroke: ${(props) => props.fillColor || props.theme.colors.secondary.text};
   }
 `;
 

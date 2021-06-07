@@ -158,10 +158,22 @@ export const defaultTheme: DefaultTheme = {
       text: "white",
     },
     inputs: {
-      background: "white",
-      label: "#000",
-      border: "1px solid #999",
-      borderRadius: "6px",
+      primary: {
+        background: "white",
+        label: "#000",
+        border: "1px solid #999",
+        borderRadius: "6px",
+        placeholderColor: "#000",
+        textColor: "#000"
+      },
+      secondary: {
+        background: "transparent",
+        label: "#000",
+        border: "2px solid #000",
+        borderRadius: "0",
+        placeholderColor: "#000",
+        textColor: "#000"
+      }
     },
     notifications: {
       default: {
