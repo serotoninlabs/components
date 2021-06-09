@@ -3,9 +3,9 @@ import { extendTheme } from "./extendTheme";
 export const racecarTheme = extendTheme({
   backgroundColor: "#000",
   fonts: {
-    serif: "Nunito",
-    sansSerif: "Tungsten",
-    mono: "Helvetica Neue",
+    serif: "Tungsten",
+    sansSerif: "Helvetica Neue",
+    mono: "Mono",
   },
   colors: {
     primary: {
