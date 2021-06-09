@@ -24,9 +24,10 @@ const LinksWrapper = styled.div<{width?: string; flexDirection?: string;}>`
   width: ${(props) => props.width || "100%"};
 
   > p, a {
-    margin: 0 auto;
+    margin: 0;
     ${(props) => props.flexDirection === "column" && "margin: 1em auto"};
     text-transform: uppercase;
+    font-family: ${(props) => props.theme.fonts.sansSerif};
     white-space: nowrap;
   }
 `;

@@ -19,9 +19,11 @@ const darkPartial: ThemeOverride = {
       text: "white",
     },
     inputs: {
-      background: "#271D20",
-      label: "white",
-      border: "1px solid red",
+      primary: {
+        background: "#271D20",
+        label: "white",
+        border: "1px solid red",
+      }
     },
   },
 };

@@ -10,9 +10,9 @@ export const StyledTextArea = styled.textarea`
   padding: 8px;
   appearance: none;
   font-family: ${(props) => props.theme.fonts.sansSerif};
-  border: ${(props) => props.theme.colors.inputs.border};
-  border-radius: ${(props) => props.theme.colors.inputs.borderRadius};
-  background-color: ${(props) => props.theme.colors.inputs.background};
+  border: ${(props) => props.theme.colors.inputs.primary.border};
+  border-radius: ${(props) => props.theme.colors.inputs.primary.borderRadius};
+  background-color: ${(props) => props.theme.colors.inputs.primary.background};
   outline: none;
   resize: none;
 `;

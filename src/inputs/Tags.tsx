@@ -11,8 +11,8 @@ export const TagsContainer = styled.div`
   .react-tags {
     position: relative;
     padding: 6px 0 0 6px;
-    border: ${(props) => props.theme.colors.inputs.border};
-    border-radius: ${(props) => props.theme.colors.inputs.borderRadius};
+    border: ${(props) => props.theme.colors.inputs.primary.border};
+    border-radius: ${(props) => props.theme.colors.inputs.primary.borderRadius};
 
     /* shared font styles */
     font-size: 1em;

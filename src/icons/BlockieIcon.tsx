@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 //@ts-ignore
 import blockies from "ethereum-blockies";
 
@@ -15,6 +15,7 @@ const Blockie = styled.img`
 `;
 
 export const BlockieIcon: React.FC<{ address: string }> = ({ address }) => {
+  const theme = useTheme();
   const blockieIcon = useMemo(() => {
     let icon = null;
     if (typeof document !== "undefined") {
@@ -22,11 +23,11 @@ export const BlockieIcon: React.FC<{ address: string }> = ({ address }) => {
         .create({
           // All options are optional
           seed: address, // seed used to generate icon data, default: random
-          color: "#eebc0f", // to manually specify the icon color, default: random
-          bgcolor: "#18e2ac", // choose a different background color, default: random
+          color: theme.colors.primary.text, // to manually specify the icon color, default: random
+          bgcolor: theme.colors.secondary.text, // choose a different background color, default: random
           size: 15, // width/height of the icon in blocks, default: 8
           scale: 3, // width/height of each block in pixels, default: 4
-          spotcolor: "#eebc0f", // each pixel has a 13% chance of being of a third color,
+          //spotcolor: "#eebc0f", // each pixel has a 13% chance of being of a third color,
           // default: random. Set to -1 to disable it. These "spots" create structures
           // that look like eyes, mouths and noses.
         })
