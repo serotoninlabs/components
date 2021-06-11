@@ -2,7 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledSection = styled.div`
-  margin: auto 1em;
+  margin: 1em;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
 `;
 
 const ListWrapper = styled.div<{width?: string}>`

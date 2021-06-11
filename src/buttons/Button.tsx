@@ -142,6 +142,8 @@ function buttonCSS(button: ButtonStyleStates) {
   background: ${button.base.background};
   color: ${button.base.text};
   border-radius: ${button.borderRadius || "50px"};
+  font-family: ${button.font || "inherit"};
+  font-size: ${button.fontSize || "inherit"};
   border: ${button.base.border};
   outline: none;
   :focus {

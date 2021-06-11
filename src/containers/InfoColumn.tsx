@@ -5,6 +5,9 @@ import { media } from "../utils/media";
 
 const StyledEdition = styled(PrimaryButton)`
   pointer-events: none;
+  line-height: 23px;
+  text-align: center;
+  letter-spacing: 0.09em;
 `;
 
 const StyledBidInfo = styled.div<{width?: string;}>`
@@ -30,29 +33,30 @@ const StyledInfoSection = styled.div<{color?: string;}>`
     margin: 0.5em auto;
   }
 
-  p:first-child {
+  .colored {
     color: ${(props) => props.theme.colors.primary.text};
     font-weight: 700;
   }
 `;
 
 interface SectionProps {
-  title: string;
+  title?: string;
   text: string;
 }
 
 const InfoSection: React.FC<{section: SectionProps}> = ({ section }) => {
+  const { title, text } = section;
   return (
     <StyledInfoSection>
-      <p>{section.title}</p>
-      <p>{section.text}</p>
+      {title && <p className="colored">{title}</p>}
+      <p>{text}</p>
     </StyledInfoSection>
   );
 };
 
 interface BidInfoProps {
   bidInfo: Array<{
-    title: string;
+    title?: string;
     text: string;
   }>;
   title?: string;
