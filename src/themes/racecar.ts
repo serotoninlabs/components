@@ -39,6 +39,24 @@ export const racecarTheme = extendTheme({
       }
     },
   },
+  containers: {
+    highlight: {
+      main: "#181818",
+      text: "#fff",
+      heading: "#fff",
+      subheading: "#fff",
+      border: "1px solid rgb(0,0,0,0.05)",
+      borderRadius: "0",
+    },
+    card: {
+      main: "181818",
+      text: "#fff",
+      heading: "#fff",
+      subheading: "#fff",
+      border: "3px solid rgb(0,0,0,0.05)",
+      borderRadius: "0",
+    },
+  },
   buttons: {
     primary: {
       borderRadius: "0",
