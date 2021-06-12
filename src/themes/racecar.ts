@@ -60,6 +60,8 @@ export const racecarTheme = extendTheme({
   buttons: {
     primary: {
       borderRadius: "0",
+      font: "Helvetica Neue",
+      fontSize: "20px",
       base: {
         background: "transparent",
         border: "3px solid #009ADA",
@@ -88,6 +90,8 @@ export const racecarTheme = extendTheme({
     },
     secondary: {
       borderRadius: "0",
+      font: "Tungsten",
+      fontSize: "26px",
       base: {
         background: "#009ADA",
         border: "none",
@@ -116,6 +120,8 @@ export const racecarTheme = extendTheme({
     },
     inverted: {
       borderRadius: "0",
+      font: "Tungsten",
+      fontSize: "26px",
       base: {
         background: "transparent",
         border: "2px solid white",
@@ -144,6 +150,8 @@ export const racecarTheme = extendTheme({
     },
     tertiary: {
       borderRadius: "10px",
+      font: "Tungsten",
+      fontSize: "26px",
       base: {
         background: "linear-gradient(155.28deg, #7D17FF 34.44%, #250745 126.01%)",
         border: "none",
