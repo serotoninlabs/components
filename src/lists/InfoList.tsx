@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { media } from "../utils/media";
 
 const StyledSection = styled.div`
   margin: 1em;
@@ -14,6 +15,11 @@ const ListWrapper = styled.div<{width?: string}>`
   flex-direction: row;
   width: ${(props) => props.width || "100%"};
   margin: auto;
+
+  ${media.mobile} {
+    flex-direction: column;
+    text-align: center;
+  }
 `;
 
 const InfoSection: React.FC<{img: string; title: string; text: string;}> = ({img, title, text}) => {

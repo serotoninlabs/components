@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { media } from "../utils/media";
 
 const LinkOuter = styled.div<{backgroundColor?: string;}>`
   position: relative;
@@ -29,6 +30,10 @@ const LinksWrapper = styled.div<{width?: string; flexDirection?: string;}>`
     text-transform: uppercase;
     font-family: ${(props) => props.theme.fonts.sansSerif};
     white-space: nowrap;
+  }
+
+  ${media.mobile} {
+    flex-direction: column;
   }
 `;
 

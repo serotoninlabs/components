@@ -49,7 +49,7 @@ const InfoSection: React.FC<{section: SectionProps}> = ({ section }) => {
   return (
     <StyledInfoSection>
       {title && <p className="colored">{title}</p>}
-      <p>{text}</p>
+      <p className="text">{text}</p>
     </StyledInfoSection>
   );
 };
