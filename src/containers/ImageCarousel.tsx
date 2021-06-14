@@ -6,7 +6,6 @@ const StyledPhoto = styled.div`
     max-width: 100%;
     width: auto;
     object-fit: contain;
-    // animation:  5s linear infinite; //rotate
   }
 `;
 
