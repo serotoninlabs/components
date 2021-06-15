@@ -34,6 +34,10 @@ const LinksWrapper = styled.div<{width?: string; flexDirection?: string;}>`
 
   ${media.mobile} {
     flex-direction: column;
+
+    p, a {
+      margin: 5px auto;
+    }
   }
 `;
 
@@ -58,7 +62,7 @@ export const LinkList: React.FC<ListProps> = ({ title, innerWidth, links, backgr
       <LinksWrapper flexDirection={flexDirection} width={innerWidth}>
         {links.map((link, idx) => {
           return (
-              link.link ? <a key={idx} href={link.link}>{link.name}</a>
+              link.link ? <a key={idx} href={link.link} target="_blank">{link.name}</a>
                 : <p key={idx}>{link.name}</p>
             )
         })}
