@@ -3,9 +3,10 @@ import React, { useState, useEffect } from "react";
 interface TimerProps {
   time: string;
   deadlineText: string;
+  format?: "words" | "clock";
 }
 
-export const TimerComponent: React.FC<TimerProps> = ({time, deadlineText}) => {
+export const TimerComponent: React.FC<TimerProps> = ({time, deadlineText, format}) => {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
   useEffect(() => {
@@ -20,7 +21,7 @@ export const TimerComponent: React.FC<TimerProps> = ({time, deadlineText}) => {
 
   function calculateTimeLeft() {
     const difference = +new Date(time) - +new Date();
-    let timeLeft: any = {};
+    let timeLeft: {[key: string]: number} = {};
 
     if (difference > 0) {
       timeLeft = {
@@ -35,9 +36,21 @@ export const TimerComponent: React.FC<TimerProps> = ({time, deadlineText}) => {
   }
 
   const timerComponents = Object.keys(timeLeft).map((interval, idx) => {
+    let timeLeftText: number | string = timeLeft[interval];
+    let intervalText = ` ${interval} `;
+    if (format === "clock") {
+      timeLeftText = timeLeftText.toString().padStart(2, '0');
+      if (idx === 3) {
+        intervalText = "";
+      } else if (idx === 2) {
+        intervalText = ";"
+      } else {
+        intervalText = ":"
+      }
+    }
     return (
       <React.Fragment key={idx}>
-        {timeLeft[interval]} {interval}{" "}
+        {timeLeftText}{intervalText}
       </React.Fragment>
     );
   });
