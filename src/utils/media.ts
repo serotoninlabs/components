@@ -1,6 +1,10 @@
 export const media = {
-  mobile: "@media only screen and (min-width: 0px) and (max-width: 767px)",
-  tablet: "@media only screen and (min-width: 768px) and (max-width: 1023px)",
-  laptop: "@media only screen and (min-width: 1024px) and (max-width: 1439px)",
+  /** @DEPRECATED: Styles for desktop don't require a media query: use regular styles and override with other media queries as necessary. */
   desktop: "@media only screen and (min-width: 1440px)",
+
+  laptop: "@media only screen and (max-width: 1439px)",
+  tablet: "@media only screen and (max-width: 1023px)",
+  mobile: "@media only screen and (max-width: 767px)",
+  small: "@media only screen and (max-width: 480px)",
+  mini: "@media only screen and (max-width: 350px)",
 };
