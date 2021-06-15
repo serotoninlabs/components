@@ -42,21 +42,19 @@ const fontSizes = {
 
 export type ContainerProps = { size?: ContainerSize };
 export const Container = styled.div<ContainerProps>`
-  ${media.mobile} {
-    min-width: ${(props) => containerSizes.mobile[props.size || "full"]};
-    width: ${(props) => containerSizes.mobile[props.size || "full"]};
+  min-width: ${(props) => containerSizes.desktop[props.size || "full"]};
+  width: ${(props) => containerSizes.desktop[props.size || "full"]};
+  ${media.laptop} {
+    min-width: ${(props) => containerSizes.fullhd[props.size || "full"]};
+    width: ${(props) => containerSizes.fullhd[props.size || "full"]};
   }
   ${media.tablet} {
     min-width: ${(props) => containerSizes.tablet[props.size || "full"]};
     width: ${(props) => containerSizes.tablet[props.size || "full"]};
   }
-  ${media.laptop} {
-    min-width: ${(props) => containerSizes.fullhd[props.size || "full"]};
-    width: ${(props) => containerSizes.fullhd[props.size || "full"]};
-  }
-  ${media.desktop} {
-    min-width: ${(props) => containerSizes.desktop[props.size || "full"]};
-    width: ${(props) => containerSizes.desktop[props.size || "full"]};
+  ${media.mobile} {
+    min-width: ${(props) => containerSizes.mobile[props.size || "full"]};
+    width: ${(props) => containerSizes.mobile[props.size || "full"]};
   }
 `;
 
