@@ -64,13 +64,13 @@ const InfoSection: React.FC<{section: SectionProps}> = ({ section }) => {
       {title && <p className="colored">{title}</p>}
       {creation && <span className="creation"><p>BORN:{" "}</p><p> {creation}</p></span>}
       <p className="text">{text}</p>
-      {creator && <span className="creator"><p>Designer:{" "}</p><p>{creator}</p></span>}
+      {creator && <span className="creator"><p>Designer:{" "}</p><p> {creator}</p></span>}
     </StyledInfoSection>
   );
 };
 
 interface BidInfoProps {
-  bidInfo: Array<{
+  tierInfo: Array<{
     title?: string;
     text: string;
     creation?: string;
@@ -81,14 +81,14 @@ interface BidInfoProps {
   width?: string; 
 }
 
-export const InfoColumn: React.FC<BidInfoProps> = ({ bidInfo, title, name, width }) => {
+export const InfoColumn: React.FC<BidInfoProps> = ({ tierInfo, title, name, width }) => {
   return (
     <>
       <StyledBidInfo width={width}>
         <div>
           {name && <h1>{name}</h1>}
           {title && <h4>{title}</h4>}
-          {bidInfo.map((section, idx) => (
+          {tierInfo.map((section, idx) => (
             <InfoSection section={section} key={idx} />
           ))}
         </div>

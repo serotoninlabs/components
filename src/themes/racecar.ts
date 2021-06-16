@@ -49,7 +49,7 @@ export const racecarTheme = extendTheme({
       borderRadius: "0",
     },
     card: {
-      main: "181818",
+      main: "#343434",
       text: "#fff",
       heading: "#fff",
       subheading: "#fff",
