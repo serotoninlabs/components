@@ -35,6 +35,8 @@ const StyledBidInfo = styled.div<{width?: string;}>`
 `;
 
 const StyledInfoSection = styled.div<{color?: string;}>`
+  display: flex;
+  flex-direction: column;
   p {
     color: ${(props) => props.color || props.theme.colors.common.white};
     margin: 0.5em auto;
@@ -43,10 +45,6 @@ const StyledInfoSection = styled.div<{color?: string;}>`
   .colored {
     color: ${(props) => props.theme.colors.primary.text};
     font-weight: 700;
-  }
-
-  .creation, .creator {
-    display: inline-flex;
   }
 `;
 
@@ -62,9 +60,9 @@ const InfoSection: React.FC<{section: SectionProps}> = ({ section }) => {
   return (
     <StyledInfoSection>
       {title && <p className="colored">{title}</p>}
-      {creation && <span className="creation"><p>BORN:{" "}</p><p> {creation}</p></span>}
+      {creation && <span className="creation"><p>BORN: {creation}</p></span>}
+      {creator && <span className="creator"><p>DESIGNER: {creator}</p></span>}
       <p className="text">{text}</p>
-      {creator && <span className="creator"><p>Designer:{" "}</p><p> {creator}</p></span>}
     </StyledInfoSection>
   );
 };
