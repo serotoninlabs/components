@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 interface TimerProps {
   time: string;
   deadlineText: string;
-  format?: "words" | "clock";
+  format?: "words" | "clock" | "hybrid";
 }
 
 export const TimerComponent: React.FC<TimerProps> = ({time, deadlineText, format}) => {
@@ -48,6 +48,14 @@ export const TimerComponent: React.FC<TimerProps> = ({time, deadlineText, format
         intervalText = ":"
       }
     }
+    if (format === "hybrid") {
+      return (
+        <span key={idx}>
+          <p>{timeLeftText}</p>
+          <p>{intervalText}</p>
+        </span>
+      )
+    }
     return (
       <React.Fragment key={idx}>
         {timeLeftText}{intervalText}
@@ -57,7 +65,9 @@ export const TimerComponent: React.FC<TimerProps> = ({time, deadlineText, format
 
   return (
     <>
-      {timerComponents.length ? timerComponents : deadlineText}
+      {format !== "hybrid" ? (timerComponents.length ? timerComponents : deadlineText)
+      : <div className="time-wrapper">{timerComponents.length ? timerComponents : deadlineText}</div>  
+    }
     </>
   );
 };
