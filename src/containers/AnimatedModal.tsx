@@ -41,7 +41,7 @@ const ModalInner = styled.div<{backgroundColor?: string;}>`
   height: 90%;
   margin: 2.5% auto;
   position: relative;
-  background-color: ${(props) => props.backgroundColor || props.theme.backgroundColor};
+  background-color: ${(props) => props.backgroundColor || props.theme.containers.card.main};
   filter: brightness(1);
   padding-bottom: 1em;
   overflow-y: auto;
