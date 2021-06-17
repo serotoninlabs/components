@@ -4,7 +4,6 @@ export * from "./Container";
 export * from "./Hero";
 export * from "./HorizontalLine";
 export * from "./ImageCarousel";
-export * from "./InfoColumn";
 export * from "./layout";
 export * from "./Messages";
 export * from "./Modal";
