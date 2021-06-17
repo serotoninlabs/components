@@ -44,8 +44,8 @@ const CarouselWrap = styled.div`
       display: inline-flex;
       position: relative;
       cursor: pointer;
-      height: 25px;
-      width: 25px;
+      height: 18px;
+      width: 18px;
       border-radius: 50%;
       margin: auto 1em;
 
