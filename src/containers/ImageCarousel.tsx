@@ -1,129 +1,88 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { media } from "../utils/media";
 
-const StyledPhoto = styled.div`
+// Otherwise next.js breaks when importing flickity
+const Flickity =
+  typeof window !== "undefined"
+    ? require("react-flickity-component")
+    : () => null;
+
+const CarouselWrap = styled.div`
+  z-index: 10;
+  position: relative;
+  min-height: calc(100vw / 1.4);
+
+  .carousel {
+    outline: 0;
+  }
+
   img {
     max-width: 100%;
     width: auto;
     object-fit: contain;
   }
-`;
 
-const ShowPhoto: React.FC<{img: string}> = ({img}) => {
-  return (
-    <StyledPhoto>
-      <img src={img} />
-    </StyledPhoto>
-  )
-}
+  .flickity-page-dots {
+    position: absolute;
+    top: 35px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    padding: 0;
+    text-align: center;
+    margin: auto;
 
-const StyledDot = styled.div<{active: boolean;}>`
-  display: inline-flex;
-  position: relative;
-  height: 50px;
-  margin: auto;
-  cursor: pointer;
+    ${media.tablet} {
+      top: 25px;
+    }
+    ${media.mobile} {
+      display: none;
+    }
 
-  > span {
-    background-color: ${(props) => props.active ? props.theme.colors.primary.text : "#fff"};
-    height: 25px;
-    width: 25px;
-    border-radius: 50%;
-    margin: auto 1em;
-  }
-`;
+    .dot {
+      display: inline-flex;
+      position: relative;
+      cursor: pointer;
+      height: 25px;
+      width: 25px;
+      border-radius: 50%;
+      margin: auto 1em;
 
-const DotsWrapper = styled.div`
-  display: block;
-  text-align: center;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-`;
-
-const StyledCarousel = styled.div`
-  display: block;
-  height: auto;
-  position: relative;
-  width: 100%;
-  z-index: 10;
-`;
-
-const Dot: React.FC<DotProps> = ({ current, setCurrent, id }) => {
-  const changeImg = (e: any) => {
-    e.preventDefault();
-    setCurrent(id)
-  }
-  return (
-    <StyledDot
-      active={current === id}
-      onClick={changeImg}
-    >
-      <span />
-    </StyledDot>
-  );
-};
-
-interface DotProps {
-  id: number; 
-  current: number; 
-  setCurrent(id: number): void;
-}
-
-interface DotsProps {
-  list: Array<string>; 
-  current: number; 
-  setCurrent(id: number): void;
-}
-
-const Dots: React.FC<DotsProps> = ({list, current, setCurrent}) => {
-  return (
-    <DotsWrapper className="dots">
-      {
-        list.map((img, idx) => (
-          <Dot current={current} setCurrent={setCurrent} id={idx} key={idx} />
-        ))
+      background-color: #fff;
+      &.is-selected {
+        background-color: ${({theme}) => theme.colors.primary.text};
       }
-    </DotsWrapper>
-  )
-}
-
-
-interface CarouselProps {
-  imgList: Array<string>; 
-  dots?: boolean; 
-  timeInterval?: number;
-}
-
-export const ImageCarousel: React.FC<CarouselProps> = ({imgList, dots, timeInterval}) => {
-  const [current, setCurrent] = useState(0);
-
-  const decideCurrent = () => {
-    if (current >= imgList.length - 1) {
-      setCurrent(0);
-    } else {
-      setCurrent(current + 1);
     }
   }
+`;
 
-  useEffect(() => {
-    const currImg = setTimeout(() => {
-      decideCurrent()
-    }, timeInterval || 5000);
+const flickityOptions = {
+  wrapAround: true,
+  autoPlay: 4000,
+  prevNextButtons: false,
+  watchCSS: false,
+};
 
-    return () => {
-      clearTimeout(currImg);
-    };
-  });
-
+interface CarouselProps {
+  imgList: Array<string>;
+  dots?: boolean;
+  timeInterval?: number;
+}
+export const ImageCarousel: React.FC<CarouselProps> = ({imgList, dots, timeInterval}) => {
   return (
-    <StyledCarousel>
-      <ShowPhoto img={imgList[current]} />
-      {dots && <Dots 
-        list={imgList} 
-        current={current} 
-        setCurrent={setCurrent}
-      />}
-    </StyledCarousel>
+    <CarouselWrap>
+      <Flickity
+        className={'carousel'}
+        options={flickityOptions}
+        disableImagesLoaded={false}
+        reloadOnUpdate
+        static
+      >
+        {imgList.map((src, idx) => (
+          <img key={idx} src={src}/>
+        ))}
+      </Flickity>
+    </CarouselWrap>
   )
 }
