@@ -1,6 +1,6 @@
 {
   "name": "@serotonin/components",
-  "version": "0.0.69",
+  "version": "0.0.70",
   "description": "",
   "main": "dist/node/index.js",
   "module": "dist/module/index.js",
