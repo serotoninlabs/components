@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import styled from "styled-components";
 import { media } from "../utils/media";
 
@@ -59,7 +59,7 @@ const CarouselWrap = styled.div`
 
 const flickityOptions = {
   wrapAround: true,
-  autoPlay: 4000,
+  autoPlay: false,
   prevNextButtons: false,
   watchCSS: false,
 };
@@ -70,9 +70,23 @@ interface CarouselProps {
   timeInterval?: number;
 }
 export const ImageCarousel: React.FC<CarouselProps> = ({imgList, dots, timeInterval}) => {
+  const [flicketyRef, setFlicketyRef] = useState<any>();
+  const [numLoaded, setNumLoaded] = useState(0);
+  const loaded = numLoaded >= imgList.length;
+
+  React.useEffect(() => {
+    if (flicketyRef && loaded) {
+      // not sure why, but this is necessary otherwise it doesn't actually start
+      setTimeout(() => {
+        flicketyRef.playPlayer();
+      }, 0);
+    }
+  }, [flicketyRef, loaded]);
+
   return (
     <CarouselWrap>
       <Flickity
+        flickityRef={(ref: any) => setFlicketyRef(ref)}
         className={'carousel'}
         options={flickityOptions}
         disableImagesLoaded={false}
@@ -80,7 +94,12 @@ export const ImageCarousel: React.FC<CarouselProps> = ({imgList, dots, timeInter
         static
       >
         {imgList.map((src, idx) => (
-          <img key={idx} src={src}/>
+          <img
+            key={idx}
+            src={src}
+            onLoad={() => setNumLoaded(numLoaded + 1)}
+            style={{ opacity: idx === 0 || loaded ? 1 : 0 }}
+          />
         ))}
       </Flickity>
     </CarouselWrap>
