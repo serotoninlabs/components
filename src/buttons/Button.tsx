@@ -1,16 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useAppAnalytics } from "../analytics/AppAnalyticsProvider";
-import { ButtonStyleStates, IPalette } from "../themes";
-
-export enum buttonSizes {
-  SMALL = "SMALL",
-  SMALL_WIDE = "SMALL_WIDE",
-  MEDIUM = "MEDIUM",
-  MEDIUM_WIDE = "MEDIUM_WIDE",
-  LARGE = "LARGE",
-  NEW_MEDIUM = "NEW_MEDIUM",
-}
+import { ButtonStyleStates, IPalette, buttonSizes } from "../themes";
 
 const paddingObject: { [index: string]: string } = {
   [buttonSizes.SMALL]: "8px 12px",
@@ -114,7 +105,7 @@ export const Button = styled(Base)`
   font-size: 1em;
   background-image: ${(props) => props.gradient || "none"};
 
-  padding: ${(props: any) => paddingObject[props.size || buttonSizes.MEDIUM]};
+  padding: ${(props: any) => props.theme.buttons.paddingOverrides?.[props.size || buttonSizes.MEDIUM] || paddingObject[props.size || buttonSizes.MEDIUM]};
   letter-spacing: ${(props: any) =>
     spacingObject[props.size || buttonSizes.MEDIUM]};
   font-size: ${(props: any) => fontObject[props.size || buttonSizes.MEDIUM]};

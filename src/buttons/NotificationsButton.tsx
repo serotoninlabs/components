@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { ButtonProps, buttonSizes, circleSize } from "./Button";
+import { buttonSizes } from "../themes";
+import { ButtonProps, circleSize } from "./Button";
 import { IconButton } from "./IconButton";
 import { AiOutlineBell } from "react-icons/ai";
 

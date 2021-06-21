@@ -1,5 +1,14 @@
 import { DefaultTheme } from "styled-components";
 
+export enum buttonSizes {
+  SMALL = "SMALL",
+  SMALL_WIDE = "SMALL_WIDE",
+  MEDIUM = "MEDIUM",
+  MEDIUM_WIDE = "MEDIUM_WIDE",
+  LARGE = "LARGE",
+  NEW_MEDIUM = "NEW_MEDIUM",
+}
+
 export interface IPalette {
   main: string;
   text: string;
@@ -36,6 +45,7 @@ declare module "styled-components" {
       mono: string;
     };
     buttons: {
+      paddingOverrides?: Partial<{ [key in buttonSizes]: string }>;
       primary: ButtonStyleStates;
       secondary: ButtonStyleStates;
       inverted: ButtonStyleStates;

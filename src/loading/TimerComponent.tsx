@@ -36,8 +36,20 @@ export const TimerComponent: React.FC<TimerProps> = ({time, deadlineText, format
   }
 
   const timerComponents = Object.keys(timeLeft).map((interval, idx) => {
+    let intervalWord = interval;
+
+    // Remove plural if one unit left
+    if (timeLeft[interval] === 1) {
+      intervalWord = interval.slice(0, -1);
+
+      // Replace with nbsp so spacing doesn't jump as much on fast-moving minutes/seconds (but alignment looks a bit off, so don't do on days/hours)
+      if (interval === "minutes" || interval === "seconds") {
+        intervalWord += " ";
+      }
+    }
+
     let timeLeftText: number | string = timeLeft[interval];
-    let intervalText = ` ${interval} `;
+    let intervalText = ` ${intervalWord} `;
     if (format === "clock") {
       timeLeftText = timeLeftText.toString().padStart(2, '0');
       if (idx === 3) {
