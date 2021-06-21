@@ -14,7 +14,7 @@ export const racecarTheme = extendTheme({
       gradient: ["#7D17FF 34.44%", "#250745 126.01%"],
     },
     secondary: {
-      text: "#FED103",
+      text: "#009ADA",
       gradient: ["#7D17FF 34.44%", "#250745 126.01%"],
     },
     common: {
