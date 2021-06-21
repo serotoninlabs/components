@@ -1,3 +1,4 @@
+import { buttonSizes } from "./types";
 import { extendTheme } from "./extendTheme";
 
 export const racecarTheme = extendTheme({
@@ -58,6 +59,14 @@ export const racecarTheme = extendTheme({
     },
   },
   buttons: {
+    paddingOverrides: {
+      // Tungsten is annoyingly offset in its character box by 4px, so top and bottom padding have to adjust in order for button text to be centered
+      [buttonSizes.SMALL]: "10px 12px 6px",
+      [buttonSizes.SMALL_WIDE]: "10px 60px 6px",
+      [buttonSizes.MEDIUM]: "12px 25px 8px",
+      [buttonSizes.MEDIUM_WIDE]: "11px 30px 7px",
+      [buttonSizes.LARGE]: "22px 50px 18px",
+    },
     primary: {
       borderRadius: "0",
       font: "Helvetica Neue",
