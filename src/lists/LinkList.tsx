@@ -42,8 +42,9 @@ const LinksWrapper = styled.div<{width?: string; flexDirection?: string;}>`
 `;
 
 interface LinkProps {
-  name: string;
+  name?: string;
   link?: string;
+  component?: JSX.Element;
 }
 
 interface ListProps {
@@ -61,6 +62,9 @@ export const LinkList: React.FC<ListProps> = ({ title, innerWidth, links, backgr
       {title && <h1>{title}</h1>}
       <LinksWrapper flexDirection={flexDirection} width={innerWidth}>
         {links.map((link, idx) => {
+          if (link.component) {
+            return <React.Fragment key={idx}>{link.component}</React.Fragment>;
+          }
           return (
               link.link ? <a key={idx} href={link.link} target="_blank">{link.name}</a>
                 : <p key={idx}>{link.name}</p>
