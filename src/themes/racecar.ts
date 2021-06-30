@@ -12,10 +12,12 @@ export const racecarTheme = extendTheme({
     primary: {
       text: "#009ADA",
       gradient: ["#7D17FF 34.44%", "#250745 126.01%"],
+      main: "#009ADA",
     },
     secondary: {
       text: "#009ADA",
       gradient: ["#7D17FF 34.44%", "#250745 126.01%"],
+      main: "#7D17FF"
     },
     common: {
       white: "#fff",
